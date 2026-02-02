@@ -1,4 +1,4 @@
 extends Node2D
 class_name Room
 
-var room_type: GameData.ROOM_TYPE
+var room_type: Consts.ROOM_TYPE

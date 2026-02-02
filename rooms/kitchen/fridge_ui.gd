@@ -1,7 +1,7 @@
 extends Control
 @onready var item_list: ItemList = $VBoxContainer/ItemList
 
-var fridge_items: Dictionary[GameData.FOOD_TYPE, int] = GameData.fridge_items
+var fridge_items: Dictionary[Consts.FOOD_TYPE, int] = GameData.fridge_items
 
 func _ready():
 	_update_buttons()
@@ -20,7 +20,7 @@ func _update_buttons():
 func _update_fridge():
 	item_list.clear()
 	for item in fridge_items:
-		item_list.add_item("%s: %d" % [GameData.FOOD_TYPE.keys()[item], 
+		item_list.add_item("%s: %d" % [Consts.FOOD_TYPE.keys()[item], 
 			fridge_items[item]])
 
 func _on_give_button_pressed():
@@ -35,7 +35,7 @@ func _on_give_button_pressed():
 		return
 	
 	fridge_items[selected_idx] -= 1
-	GameData.hunger -= GameData.FOOD_PRICES[selected_idx]
+	GameData.hunger -= Consts.FOOD_PRICES[selected_idx]
 	_update_fridge()
 
 func _on_item_list_item_selected(_index):

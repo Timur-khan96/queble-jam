@@ -8,32 +8,25 @@ script = ExtResource("1_0xm2m")
 [node name="ui_layer" type="CanvasLayer" parent="." unique_id=1952905286]
 
 [node name="top_left" type="PanelContainer" parent="ui_layer" unique_id=15064782]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 77.0
 
 [node name="coins_label" type="Label" parent="ui_layer/top_left" unique_id=965759066]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 
-[node name="bottom_center" type="PanelContainer" parent="ui_layer" unique_id=328269529]
+[node name="needs_container" type="HBoxContainer" parent="ui_layer" unique_id=1641615831]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -84.0
+offset_top = -144.0
+offset_right = 84.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ui_layer/bottom_center" unique_id=1641615831]
-layout_mode = 2
-
-[node name="boredom_button" type="Button" parent="ui_layer/bottom_center/HBoxContainer" unique_id=1419158790]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="hunger_button" type="Button" parent="ui_layer/bottom_center/HBoxContainer" unique_id=1509162074]
-unique_name_in_owner = true
-layout_mode = 2
