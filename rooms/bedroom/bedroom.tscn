@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cm6t3f5aj8qot"]
+
+[ext_resource type="Script" uid="uid://cya78q010p344" path="res://rooms/room_base.gd" id="1_r7qss"]
+
+[node name="Bedroom" type="Node2D" unique_id=72128620]
+script = ExtResource("1_r7qss")
+metadata/_custom_type_script = "uid://cya78q010p344"

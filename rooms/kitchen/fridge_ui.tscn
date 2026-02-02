@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c374g58gx1h43"]
+
+[ext_resource type="Script" uid="uid://b6rpl877q513y" path="res://rooms/kitchen/fridge_ui.gd" id="1_ss4tx"]
+
+[node name="fridgeUI" type="Control" unique_id=882802479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ss4tx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1176675348]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1582134586]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=502857273]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="give_button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1757253148]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Give"
+
+[node name="buy_button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=592753161]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy"
+
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/give_button" to="." method="_on_give_button_pressed"]

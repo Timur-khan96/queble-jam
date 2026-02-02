@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://diwfruugpm3da"]
+
+[ext_resource type="Script" uid="uid://b06dgvn8gspux" path="res://rooms/kitchen/kitchen.gd" id="1_ivslp"]
+[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_0q2so"]
+[ext_resource type="PackedScene" uid="uid://c374g58gx1h43" path="res://rooms/kitchen/fridge_ui.tscn" id="2_i5yp4"]
+
+[node name="Kitchen" type="Node2D" unique_id=593206406]
+script = ExtResource("1_ivslp")
+fridge_ui_scene = ExtResource("2_i5yp4")
+
+[node name="fridge" type="TextureRect" parent="." unique_id=1238729148]
+offset_left = 261.0
+offset_top = 98.0
+offset_right = 389.0
+offset_bottom = 226.0
+texture = ExtResource("2_0q2so")
+
+[connection signal="gui_input" from="fridge" to="." method="_on_fridge_gui_input"]
