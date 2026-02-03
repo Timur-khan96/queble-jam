@@ -8,6 +8,10 @@
 script = ExtResource("1_ivslp")
 fridge_ui_scene = ExtResource("2_i5yp4")
 
+[node name="canceling_control" type="Control" parent="." unique_id=315222387]
+layout_mode = 3
+anchors_preset = 0
+
 [node name="fridge" type="TextureRect" parent="." unique_id=1238729148]
 offset_left = 261.0
 offset_top = 98.0

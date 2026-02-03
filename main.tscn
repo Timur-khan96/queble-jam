@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://d2bayih11h1pi"]
 
 [ext_resource type="Script" uid="uid://dfmig8ivkbqvg" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://c3rxcbpl8nbwe" path="res://UI/progress_bars/under.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ccni8k7dcxhju" path="res://UI/progress_bars/sleep_over.png" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cgd8xglvb5lj4" path="res://UI/progress_bars/progress.png" id="4_7mycd"]
 
-[node name="main" type="Node2D" unique_id=283299062]
+[node name="main" type="Node" unique_id=1280928773]
 script = ExtResource("1_0xm2m")
 
 [node name="ui_layer" type="CanvasLayer" parent="." unique_id=1952905286]
@@ -30,3 +33,17 @@ offset_top = -144.0
 offset_right = 84.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ui_layer/needs_container" unique_id=1777131132]
+visible = false
+layout_mode = 2
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("2_1bvp3")
+texture_over = ExtResource("3_lquwl")
+texture_progress = ExtResource("4_7mycd")
+
+[node name="needs_timer" type="Timer" parent="." unique_id=1453948631]
+autostart = true
+
+[connection signal="timeout" from="needs_timer" to="." method="_on_needs_timer_timeout"]

@@ -1,7 +1,27 @@
 [gd_scene format=3 uid="uid://dayq0jsuq8unw"]
 
-[ext_resource type="Script" uid="uid://cya78q010p344" path="res://rooms/room_base.gd" id="1_qk2dr"]
+[ext_resource type="Script" uid="uid://ch88p7grtjkwd" path="res://rooms/study/study.gd" id="1_pnfcb"]
+[ext_resource type="PackedScene" uid="uid://dkdghneggsrnj" path="res://rooms/study/computer/computer.tscn" id="2_hhniq"]
+[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_pnfcb"]
 
 [node name="Study" type="Node2D" unique_id=1786009908]
-script = ExtResource("1_qk2dr")
+script = ExtResource("1_pnfcb")
+computer_scene = ExtResource("2_hhniq")
 metadata/_custom_type_script = "uid://cya78q010p344"
+
+[node name="computer" type="TextureRect" parent="." unique_id=684904417]
+offset_left = 161.0
+offset_top = 133.0
+offset_right = 289.0
+offset_bottom = 261.0
+texture = ExtResource("2_pnfcb")
+
+[node name="Label" type="Label" parent="." unique_id=2034265167]
+offset_left = 144.0
+offset_top = 76.0
+offset_right = 300.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 32
+text = "Computer"
+
+[connection signal="gui_input" from="computer" to="." method="_on_computer_gui_input"]

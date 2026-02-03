@@ -1,7 +1,23 @@
 [gd_scene format=3 uid="uid://cm6t3f5aj8qot"]
 
-[ext_resource type="Script" uid="uid://cya78q010p344" path="res://rooms/room_base.gd" id="1_r7qss"]
+[ext_resource type="Script" uid="uid://bfvotwiwubfb8" path="res://rooms/bedroom/bedroom.gd" id="1_25nom"]
+[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_efd8u"]
 
 [node name="Bedroom" type="Node2D" unique_id=72128620]
-script = ExtResource("1_r7qss")
+script = ExtResource("1_25nom")
 metadata/_custom_type_script = "uid://cya78q010p344"
+
+[node name="bed" type="TextureRect" parent="." unique_id=1601932286]
+offset_left = 324.0
+offset_top = 156.0
+offset_right = 452.0
+offset_bottom = 284.0
+texture = ExtResource("2_efd8u")
+
+[node name="Label" type="Label" parent="." unique_id=447170137]
+offset_left = 344.0
+offset_top = 81.0
+offset_right = 431.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 48
+text = "bed"

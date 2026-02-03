@@ -1,7 +1,23 @@
 [gd_scene format=3 uid="uid://chk5yvsnluif0"]
 
 [ext_resource type="Script" uid="uid://cya78q010p344" path="res://rooms/room_base.gd" id="1_e6atm"]
+[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_8fdcw"]
 
 [node name="Bathroom" type="Node2D" unique_id=1990499889]
 script = ExtResource("1_e6atm")
 metadata/_custom_type_script = "uid://cya78q010p344"
+
+[node name="Label" type="Label" parent="." unique_id=261118624]
+offset_left = 768.0
+offset_top = 108.0
+offset_right = 911.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 64
+text = "bath"
+
+[node name="bath" type="TextureRect" parent="." unique_id=1785507113]
+offset_left = 776.0
+offset_top = 211.0
+offset_right = 904.0
+offset_bottom = 339.0
+texture = ExtResource("2_8fdcw")
