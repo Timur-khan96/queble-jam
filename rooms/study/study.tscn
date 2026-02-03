@@ -24,4 +24,12 @@ offset_bottom = 121.0
 theme_override_font_sizes/font_size = 32
 text = "Computer"
 
+[node name="computer_root" type="Control" parent="." unique_id=152609690]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="gui_input" from="computer" to="." method="_on_computer_gui_input"]
