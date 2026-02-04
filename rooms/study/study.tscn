@@ -28,12 +28,13 @@ texture = ExtResource("4_gq7ca")
 expand_mode = 1
 
 [node name="computer" type="ColorRect" parent="background" unique_id=1167764157]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 170.0
-offset_right = 604.0
-offset_bottom = 324.0
-color = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.271
+anchor_right = 0.466
+anchor_bottom = 0.42
+color = Color(1, 1, 0, 0.6666667)
 
 [node name="fun_timer" type="Timer" parent="." unique_id=206963346]
 

@@ -10,11 +10,12 @@ enum STATE {IDLE, SOAP, SHOWER}
 @onready var mask_brush = %mask_brush
 @onready var dirt = %dirt
 @onready var naked_girl = $naked_girl
+@onready var return_button = %return_button
 
 
-@onready var test_label = %test_label
-
-var _mouse_node: Sprite2D = null
+var _mouse_node: Node2D = null
+var shower_scene = load("uid://btnp1u3uj17pm")
+var foam_scene = load("uid://cxjtxschawytu")
 
 var state: STATE = STATE.IDLE:
 	set(value):
@@ -36,17 +37,32 @@ var GRID_Y: int
 var dirt_grid := PackedByteArray()   # size = GRID_X * GRID_Y
 var clean_grid := PackedByteArray()  # size = GRID_X * GRID_Y
 var brush_radius_uv: Vector2
+
 var total_dirt_cells := 0
+var total_cleaned_cells: = 0
+var cleaned_percent: float = 0.
+var foam_counter := 0
+
+var dirt_tex_size: Vector2
 			
 func _ready():
 	var dirt_texture := load("uid://d1w1ynfge08dp")
-	var tex_size = dirt_texture.get_size()
-	mask_viewport.size = tex_size
-	var aspect = tex_size.y / tex_size.x
+	dirt_tex_size = dirt_texture.get_size()
+	mask_viewport.size = dirt_tex_size
+	var aspect = dirt_tex_size.y / dirt_tex_size.x
 	GRID_Y = int(GRID_X * aspect)
 	_build_dirt_grid(dirt_texture)
-	brush_radius_uv = Vector2(BRUSH_RADIUS / tex_size.x, 
-		BRUSH_RADIUS / tex_size.y)
+	brush_radius_uv = Vector2(BRUSH_RADIUS / dirt_tex_size.x, 
+		BRUSH_RADIUS / dirt_tex_size.y)
+	_position_girl()
+	return_button.hide()
+		
+func _position_girl():
+	var rect_size = get_viewport_rect().size
+	var x_offset_factor = 0.5
+	naked_girl.position.x = rect_size.x * x_offset_factor
+	var y_offset = naked_girl.texture.get_height() * naked_girl.scale.y / 2
+	naked_girl.position.y = rect_size.y - y_offset
 	
 func _build_dirt_grid(texture: Texture2D):
 	dirt_grid.resize(GRID_X * GRID_Y)
@@ -80,25 +96,21 @@ func _build_dirt_grid(texture: Texture2D):
 	
 	
 func _init_mouse_follow():
-	_mouse_node = Sprite2D.new()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	match state:
 		STATE.SOAP:
+			_mouse_node = Sprite2D.new()
 			_mouse_node.texture = soap.texture
 			shower_head.visible = true
 			soap.visible = false
 			_mouse_node.scale = Vector2(0.4, 0.4)
 		STATE.SHOWER:
-			_mouse_node.texture = shower_head.texture
+			_mouse_node = shower_scene.instantiate()
 			soap.visible = true
 			shower_head.visible = false
-			_mouse_node.scale = Vector2(0.5, 0.4)
 	_mouse_node.z_index = 100
 	add_child(_mouse_node)
 	_mouse_node.global_position = get_global_mouse_position()
-	
-func _process(_delta):
-	test_label.text = "cleaned: %d%%" % [get_clean_percent() * 100]
 			
 func _physics_process(delta):
 	if _mouse_node == null: return
@@ -106,11 +118,12 @@ func _physics_process(delta):
 		get_global_mouse_position(), 12.5 * delta)
 		
 	if state == STATE.SOAP:
+		if cleaned_percent >= 0.9:
+			mask_brush.visible = false
+			return
 		var mouse_global = get_global_mouse_position()
 		var local = dirt.to_local(mouse_global)
-
-		var tex_size = dirt.texture.get_size()
-		var uv = (local + tex_size * 0.5) / tex_size
+		var uv = (local + dirt_tex_size * 0.5) / dirt_tex_size
 
 		mask_brush.position = uv * Vector2(mask_viewport.size)
 		mask_brush.visible = true
@@ -129,9 +142,8 @@ func apply_cleaning_uv(uv: Vector2):
 		if gy < 0 or gy >= GRID_Y: continue
 		for gx in range(center_gx - rx, center_gx + rx + 1):
 			if gx < 0 or gx >= GRID_X: continue
-			# Cell center in UV
+			
 			var cell_uv = Vector2((gx + 0.5) / GRID_X, (gy + 0.5) / GRID_Y)
-			# Elliptical distance check
 			var dx = (cell_uv.x - uv.x) / brush_radius_uv.x
 			var dy = (cell_uv.y - uv.y) / brush_radius_uv.y
 			if dx * dx + dy * dy > 1.0: continue
@@ -139,13 +151,31 @@ func apply_cleaning_uv(uv: Vector2):
 			var idx = gy * GRID_X + gx
 			if dirt_grid[idx] == 1 and clean_grid[idx] == 0:
 				clean_grid[idx] = 1
+				total_cleaned_cells += 1
+				_update_clean_percent()
+				if randi() % 4 == 0:
+					_spawn_foam(gx, gy)
 				
-func get_clean_percent() -> float:
-	var cleaned := 0
-	for i in dirt_grid.size():
-		if dirt_grid[i] == 1 and clean_grid[i] == 1:
-			cleaned += 1
-	return float(cleaned) / total_dirt_cells
+func _update_clean_percent():
+	var result: float = total_cleaned_cells / float(total_dirt_cells)
+	if result >= 0.9:
+		cleaned_percent = 1.0
+		dirt.hide()
+	else:
+		cleaned_percent = result
+		
+func _spawn_foam(gx: int, gy: int):
+	var foam: Area2D = foam_scene.instantiate()
+	foam.position = Vector2(
+		(gx + 0.5) / GRID_X * dirt_tex_size.x - dirt_tex_size.x * 0.5,
+		(gy + 0.5) / GRID_Y * dirt_tex_size.y - dirt_tex_size.y * 0.5
+	)
+	foam.rotation = randf_range(0, TAU)
+	foam.scale *= randf_range(0.8, 1.2)
+	foam.z_index = dirt.z_index + 1
+	foam_counter += 1
+	foam.tree_exited.connect(_on_foam_exited)
+	naked_girl.add_child(foam)
 			
 func _on_return_button_pressed():
 	state = STATE.IDLE
@@ -160,3 +190,9 @@ func _on_soap_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			state = STATE.SOAP
+			
+func _on_foam_exited():
+	foam_counter -= 1
+	if foam_counter == 0:
+		GameData.update_need(Consts.NEED_TYPE.HYGIENE, 1)
+		return_button.show()

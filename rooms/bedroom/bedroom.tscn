@@ -25,11 +25,11 @@ texture = ExtResource("2_61vwq")
 expand_mode = 1
 
 [node name="bed" type="ColorRect" parent="background" unique_id=76582745]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 243.0
-offset_right = 511.0
-offset_bottom = 674.0
-color = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.393
+anchor_right = 0.401
+anchor_bottom = 0.825
+color = Color(1, 1, 0.08627451, 0.76862746)
 
 [connection signal="gui_input" from="background/bed" to="." method="_on_bed_gui_input"]

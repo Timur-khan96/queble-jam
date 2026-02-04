@@ -19,9 +19,9 @@ func _ready():
 	_on_coins_updated()
 	_position_girl()
 	
-func _position_girl(centered: bool = false):
+func _position_girl():
 	var rect_size = girl.get_viewport_rect().size
-	var x_offset_factor = 0.5 if centered else 0.75
+	var x_offset_factor = 0.75
 	girl.position.x = rect_size.x * x_offset_factor
 	girl.position.y = rect_size.y - girl.texture.get_height() * girl.scale.y / 2
 	

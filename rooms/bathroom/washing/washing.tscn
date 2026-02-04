@@ -79,6 +79,8 @@ texture = ExtResource("3_a2257")
 expand_mode = 1
 
 [node name="return_button" type="Button" parent="center_right/VBoxContainer" unique_id=765144452]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
@@ -98,7 +100,7 @@ texture = ExtResource("5_qy677")
 [node name="naked_girl" type="Sprite2D" parent="." unique_id=1765931185]
 z_index = 1
 position = Vector2(625.00006, 412)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_qy677")
 
 [node name="censorship" type="Sprite2D" parent="naked_girl" unique_id=1134300892]
