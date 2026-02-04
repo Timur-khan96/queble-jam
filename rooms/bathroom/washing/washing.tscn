@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://ccxy8yvi4bx7y"]
+
+[ext_resource type="Script" uid="uid://cxiq6rth2c8tr" path="res://rooms/bathroom/washing/washing.gd" id="1_a2257"]
+[ext_resource type="Texture2D" uid="uid://2bsx0olbx82o" path="res://rooms/bathroom/washing/bath_texture.png" id="1_gm3jp"]
+[ext_resource type="Texture2D" uid="uid://mk0h32eg85k1" path="res://rooms/bathroom/washing/shower_head.png" id="2_fsg1l"]
+[ext_resource type="Texture2D" uid="uid://nj0af0kqrdf5" path="res://rooms/bathroom/washing/soap.png" id="3_a2257"]
+[ext_resource type="Texture2D" uid="uid://goo8j64wp5ft" path="res://rooms/bathroom/washing/mask_brush.png" id="5_qy677"]
+[ext_resource type="Texture2D" uid="uid://b4f2rcchw673r" path="res://girl/images/naked/naked_closed_mouth.png" id="6_qy677"]
+[ext_resource type="Texture2D" uid="uid://b87eunl0ohnqp" path="res://girl/images/naked/soap_censorship.png" id="8_ih7os"]
+[ext_resource type="Shader" uid="uid://ccm0rrtbaaf75" path="res://shaders/washing.gdshader" id="9_m00ae"]
+[ext_resource type="Texture2D" uid="uid://d1w1ynfge08dp" path="res://girl/images/naked/dirt_layer.png" id="10_xgens"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qy677"]
+viewport_path = NodePath("mask_viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jamkd"]
+resource_local_to_scene = true
+shader = ExtResource("9_m00ae")
+shader_parameter/mask_texture = SubResource("ViewportTexture_qy677")
+
+[node name="washing" type="Control" unique_id=136317907]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2257")
+
+[node name="background" type="TextureRect" parent="." unique_id=549734122]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gm3jp")
+stretch_mode = 1
+
+[node name="center_right" type="Control" parent="." unique_id=413727962]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="center_right" unique_id=310794979]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -228.0
+offset_bottom = 228.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="shower_head" type="TextureRect" parent="center_right/VBoxContainer" unique_id=147214807]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+texture = ExtResource("2_fsg1l")
+expand_mode = 1
+flip_h = true
+
+[node name="soap" type="TextureRect" parent="center_right/VBoxContainer" unique_id=1010481206]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 2
+texture = ExtResource("3_a2257")
+expand_mode = 1
+
+[node name="return_button" type="Button" parent="center_right/VBoxContainer" unique_id=765144452]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Return"
+
+[node name="mask_viewport" type="SubViewport" parent="." unique_id=121776900]
+unique_name_in_owner = true
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="mask_brush" type="Sprite2D" parent="mask_viewport" unique_id=822152510]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = ExtResource("5_qy677")
+
+[node name="naked_girl" type="Sprite2D" parent="." unique_id=1765931185]
+z_index = 1
+position = Vector2(625.00006, 412)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_qy677")
+
+[node name="censorship" type="Sprite2D" parent="naked_girl" unique_id=1134300892]
+texture = ExtResource("8_ih7os")
+
+[node name="dirt" type="Sprite2D" parent="naked_girl" unique_id=1532556803]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_jamkd")
+texture = ExtResource("10_xgens")
+
+[connection signal="gui_input" from="center_right/VBoxContainer/shower_head" to="." method="_on_shower_head_gui_input"]
+[connection signal="gui_input" from="center_right/VBoxContainer/soap" to="." method="_on_soap_gui_input"]
+[connection signal="pressed" from="center_right/VBoxContainer/return_button" to="." method="_on_return_button_pressed"]

@@ -3,40 +3,51 @@
 [ext_resource type="Script" uid="uid://b6rpl877q513y" path="res://rooms/kitchen/fridge_ui.gd" id="1_ss4tx"]
 
 [node name="fridgeUI" type="Control" unique_id=882802479]
+z_index = 2
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_ss4tx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1176675348]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=313946834]
+custom_minimum_size = Vector2(312, 324)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1582134586]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1735427590]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1176675348]
+layout_mode = 2
+
+[node name="fridge_list" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1582134586]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=502857273]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=502857273]
 layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="give_button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1757253148]
+[node name="give_button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1757253148]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
 text = "Give"
 
-[node name="buy_button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=592753161]
+[node name="buy_button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=592753161]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
 text = "Buy"
 
-[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/give_button" to="." method="_on_give_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/buy_button" to="." method="_on_buy_button_pressed"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/VBoxContainer/fridge_list" to="." method="_on_fridge_list_item_selected"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/give_button" to="." method="_on_give_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/buy_button" to="." method="_on_buy_button_pressed"]

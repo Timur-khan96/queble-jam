@@ -1,22 +1,46 @@
 [gd_scene format=3 uid="uid://diwfruugpm3da"]
 
 [ext_resource type="Script" uid="uid://b06dgvn8gspux" path="res://rooms/kitchen/kitchen.gd" id="1_ivslp"]
-[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_0q2so"]
 [ext_resource type="PackedScene" uid="uid://c374g58gx1h43" path="res://rooms/kitchen/fridge_ui.tscn" id="2_i5yp4"]
+[ext_resource type="Texture2D" uid="uid://cny3pm2blvamh" path="res://rooms/kitchen/background_AI.png" id="3_i5yp4"]
 
-[node name="Kitchen" type="Node2D" unique_id=593206406]
+[node name="Kitchen" type="Control" unique_id=978103329]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ivslp")
 fridge_ui_scene = ExtResource("2_i5yp4")
+metadata/_custom_type_script = "uid://cya78q010p344"
 
 [node name="canceling_control" type="Control" parent="." unique_id=315222387]
-layout_mode = 3
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="fridge" type="TextureRect" parent="." unique_id=1238729148]
-offset_left = 261.0
-offset_top = 98.0
-offset_right = 389.0
-offset_bottom = 226.0
-texture = ExtResource("2_0q2so")
+[node name="background" type="TextureRect" parent="." unique_id=119779462]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_i5yp4")
 
-[connection signal="gui_input" from="fridge" to="." method="_on_fridge_gui_input"]
+[node name="fridge" type="ColorRect" parent="background" unique_id=1722706674]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 274.0
+offset_top = 173.0
+offset_right = 493.0
+offset_bottom = 562.0
+color = Color(1, 1, 1, 0)
+
+[connection signal="gui_input" from="background/fridge" to="." method="_on_fridge_gui_input"]

@@ -20,6 +20,12 @@ config/icon="res://icon.svg"
 Consts="*uid://b5ctki111ylsr"
 GameData="*uid://mv8f1g74mj81"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_left={
@@ -82,3 +88,4 @@ exit={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)

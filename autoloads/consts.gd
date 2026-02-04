@@ -40,3 +40,8 @@ const FOOD_SATIATION: Dictionary[FOOD_TYPE, float] = {
 	FOOD_TYPE.TOMATO: 0.2,
 	FOOD_TYPE.CHEESE: 0.28
 }
+
+const GIRL_SCALE = 0.4
+
+const FUN_INCREASE_RATE = 0.02
+const WASHING_SCENE_UID = "uid://ccxy8yvi4bx7y"

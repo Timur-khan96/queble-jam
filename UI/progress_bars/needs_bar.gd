@@ -32,7 +32,7 @@ func _notification(what):
 func _draw():
 	if !hovered: return
 	var pos = size / 2
-	draw_circle(pos, OUTLINE_RADIUS, Color.WHITE, false, 4.0)
+	draw_circle(pos, OUTLINE_RADIUS, Color.YELLOW, false, 4.0)
 	
 func _gui_input(event):
 	if event is not InputEventMouseButton: return
@@ -43,10 +43,16 @@ func _on_needs_updated():
 	_update_value()
 	
 func _update_value():
-	value = GameData.needs[type]
-	if value > 0.5:
+	var new_value: float = GameData.needs[type]
+	var diff: float = abs(value - new_value)
+	if diff >= 0.05:
+		var tween = create_tween()
+		tween.tween_property(self, "value", new_value, 2 * diff)
+	else:
+		value = new_value
+	if new_value > 0.5:
 		tint_progress = Color.FOREST_GREEN
-	elif value > 0.25:
+	elif new_value > 0.25:
 		tint_progress = Color.YELLOW
 	else:
 		tint_progress = Color.RED

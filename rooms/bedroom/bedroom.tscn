@@ -1,23 +1,35 @@
 [gd_scene format=3 uid="uid://cm6t3f5aj8qot"]
 
 [ext_resource type="Script" uid="uid://bfvotwiwubfb8" path="res://rooms/bedroom/bedroom.gd" id="1_25nom"]
-[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_efd8u"]
+[ext_resource type="Texture2D" uid="uid://kgcb6dhsg6h8" path="res://rooms/bedroom/background_AI.png" id="2_61vwq"]
 
-[node name="Bedroom" type="Node2D" unique_id=72128620]
+[node name="Bedroom" type="Control" unique_id=662676082]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_25nom")
 metadata/_custom_type_script = "uid://cya78q010p344"
 
-[node name="bed" type="TextureRect" parent="." unique_id=1601932286]
-offset_left = 324.0
-offset_top = 156.0
-offset_right = 452.0
-offset_bottom = 284.0
-texture = ExtResource("2_efd8u")
+[node name="background" type="TextureRect" parent="." unique_id=208020149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_61vwq")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="." unique_id=447170137]
-offset_left = 344.0
-offset_top = 81.0
-offset_right = 431.0
-offset_bottom = 148.0
-theme_override_font_sizes/font_size = 48
-text = "bed"
+[node name="bed" type="ColorRect" parent="background" unique_id=76582745]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 243.0
+offset_right = 511.0
+offset_bottom = 674.0
+color = Color(1, 1, 1, 0)
+
+[connection signal="gui_input" from="background/bed" to="." method="_on_bed_gui_input"]

@@ -1,23 +1,35 @@
 [gd_scene format=3 uid="uid://chk5yvsnluif0"]
 
-[ext_resource type="Script" uid="uid://cya78q010p344" path="res://rooms/room_base.gd" id="1_e6atm"]
-[ext_resource type="Texture2D" uid="uid://c0l62g0x0ugkj" path="res://icon.svg" id="2_8fdcw"]
+[ext_resource type="Script" uid="uid://jiovk7c3ddkp" path="res://rooms/bathroom/bathroom.gd" id="1_8fdcw"]
+[ext_resource type="Texture2D" uid="uid://b2r43duhpdry3" path="res://rooms/bathroom/background_AI.png" id="3_72p3x"]
 
-[node name="Bathroom" type="Node2D" unique_id=1990499889]
-script = ExtResource("1_e6atm")
+[node name="Bathroom" type="Control" unique_id=1162984883]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fdcw")
 metadata/_custom_type_script = "uid://cya78q010p344"
 
-[node name="Label" type="Label" parent="." unique_id=261118624]
-offset_left = 768.0
-offset_top = 108.0
-offset_right = 911.0
-offset_bottom = 196.0
-theme_override_font_sizes/font_size = 64
-text = "bath"
+[node name="background" type="TextureRect" parent="." unique_id=383392907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_72p3x")
+expand_mode = 1
 
-[node name="bath" type="TextureRect" parent="." unique_id=1785507113]
-offset_left = 776.0
-offset_top = 211.0
-offset_right = 904.0
-offset_bottom = 339.0
-texture = ExtResource("2_8fdcw")
+[node name="bath" type="ColorRect" parent="background" unique_id=2085775904]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 312.0
+offset_right = 717.0
+offset_bottom = 508.0
+color = Color(1, 1, 1, 0)
+
+[connection signal="gui_input" from="background/bath" to="." method="_on_bath_gui_input"]
