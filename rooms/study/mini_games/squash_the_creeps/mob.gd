@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 signal squashed
 
-@export var min_speed = 10
-@export var max_speed = 18
+@export var min_speed = 8
+@export var max_speed = 15
 
 func initialize(start_position, player_position):
 	look_at_from_position(start_position, player_position, Vector3.UP)

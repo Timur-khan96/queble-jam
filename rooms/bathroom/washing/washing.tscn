@@ -109,6 +109,17 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_jamkd")
 texture = ExtResource("10_xgens")
 
+[node name="test_label" type="Label" parent="." unique_id=1500945148]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 118.0
+offset_top = 202.0
+offset_right = 254.0
+offset_bottom = 247.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "test"
+
 [connection signal="gui_input" from="center_right/VBoxContainer/shower_head" to="." method="_on_shower_head_gui_input"]
 [connection signal="gui_input" from="center_right/VBoxContainer/soap" to="." method="_on_soap_gui_input"]
 [connection signal="pressed" from="center_right/VBoxContainer/return_button" to="." method="_on_return_button_pressed"]

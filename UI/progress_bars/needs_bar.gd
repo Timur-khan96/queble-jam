@@ -8,6 +8,7 @@ var type: Consts.NEED_TYPE
 const OUTLINE_RADIUS = 64
 
 var hovered = false
+var disabled = false
 
 func _init(_my_type: Consts.NEED_TYPE):
 	type = _my_type
@@ -31,10 +32,12 @@ func _notification(what):
 	
 func _draw():
 	if !hovered: return
+	if disabled: return
 	var pos = size / 2
 	draw_circle(pos, OUTLINE_RADIUS, Color.YELLOW, false, 4.0)
 	
 func _gui_input(event):
+	if disabled: return
 	if event is not InputEventMouseButton: return
 	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		clicked.emit(type)

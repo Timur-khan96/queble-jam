@@ -21,7 +21,6 @@ visible = false
 texture = ExtResource("3_s4oi6")
 
 [node name="dirt" type="Sprite2D" parent="." unique_id=1532556803]
-visible = false
 texture = ExtResource("4_yso6t")
 
 [connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]

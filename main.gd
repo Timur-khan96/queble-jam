@@ -1,8 +1,10 @@
 extends Node
 
 @onready var coins_label := %coins_label
-@onready var needs_container := %needs_container
 @onready var girl := $girl
+@onready var h_needs_container = %h_needs_container
+@onready var v_needs_container = %v_needs_container
+
 
 
 var current_room_node: Room
@@ -10,7 +12,7 @@ var current_room_node: Room
 func _ready():
 	for need_type in Consts.NEED_TYPE:
 		var bar = NeedBar.new(Consts.NEED_TYPE[need_type])
-		needs_container.add_child(bar)
+		h_needs_container.add_child(bar)
 		bar.clicked.connect(_on_need_bar_clicked)
 	change_room(Consts.ROOM_TYPE.BEDROOM)
 	GameData.coins_updated.connect(_on_coins_updated)
@@ -35,24 +37,32 @@ func change_room(new_room: Consts.ROOM_TYPE):
 	
 	_connect_room_signals()
 	
+func _move_needs_left():
+	for c in h_needs_container.get_children():
+		c.disabled = true
+		c.reparent(v_needs_container)
+		
+func _move_needs_bottom():
+	for c in v_needs_container.get_children():
+		c.disabled = false
+		c.reparent(h_needs_container)
+	
 func _connect_room_signals():
 	match current_room_node.room_type:
 		Consts.ROOM_TYPE.STUDY:
 			current_room_node.computer_opened.connect(func(): 
+				_move_needs_left()
 				girl.hide())
-			current_room_node.computer_closed.connect(func(): 
+			current_room_node.computer_closed.connect(func():
+				_move_needs_bottom()
 				girl.show())
 		Consts.ROOM_TYPE.BATHROOM:
 			current_room_node.washing_started.connect(func():
-				needs_container.hide()
+				_move_needs_left()
 				girl.hide())
-				#_position_girl(true)
-				#girl.is_washing = true)
 			current_room_node.washing_finished.connect(func():
-				needs_container.show() 
+				_move_needs_bottom()
 				girl.show())
-				#_position_girl()
-				#girl.is_washing = false)
 	
 func _input(event):
 	if Input.is_action_just_pressed_by_event("exit", event):

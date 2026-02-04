@@ -33,7 +33,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="needs_container" type="HBoxContainer" parent="ui_layer/bottom_center" unique_id=1641615831]
+[node name="h_needs_container" type="HBoxContainer" parent="ui_layer/bottom_center" unique_id=1641615831]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -54,6 +54,18 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+
+[node name="v_needs_container" type="VBoxContainer" parent="ui_layer/center_left" unique_id=128667259]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+alignment = 1
 
 [node name="needs_timer" type="Timer" parent="." unique_id=1453948631]
 autostart = true

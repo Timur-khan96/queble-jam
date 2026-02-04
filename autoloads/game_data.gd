@@ -24,7 +24,7 @@ func _ready():
 func _restart_needs():
 	print("restarting needs")
 	for need in Consts.NEED_TYPE:
-		needs[Consts.NEED_TYPE[need]] = 0.2
+		needs[Consts.NEED_TYPE[need]] = 0
 		needs_decreasing[Consts.NEED_TYPE[need]] = true
 	needs[Consts.NEED_TYPE.ENERGY] = 1.
 		
