@@ -1,6 +1,9 @@
 extends Control
 class_name Room
 
+@warning_ignore("unused_signal")
+signal girl_say_request(String)
+
 var room_type: Consts.ROOM_TYPE
 var need_type: Consts.NEED_TYPE
 

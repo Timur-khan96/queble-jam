@@ -41,7 +41,7 @@ func _on_mob_timer_timeout():
 	var player_position = player.position
 	mob.initialize(spawn_location.position, player_position)
 	mob.squashed.connect(func(): 
-		_update_score(score + 1))
+		_update_score(score + 5))
 	add_child(mob)
 	
 func _input(_event):
@@ -50,6 +50,10 @@ func _input(_event):
 
 func _on_player_hit():
 	$MobTimer.stop()
+	$score_timer.stop()
 	%game_over_label.show()
 	GameData.update_coins(score)
 	game_over.emit()
+
+func _on_score_timer_timeout():
+	_update_score(score + 1)

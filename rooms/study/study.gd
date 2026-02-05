@@ -49,20 +49,16 @@ func _restart_minigame():
 		return
 	var minigame = computer_node.restart_minigame()
 	minigame.game_over.connect(_on_minigame_over)
-	
-	GameData.needs_decreasing[need_type] = false
 	fun_timer.start()
 		
 func _on_fun_timer_timeout():
 	if computer_node == null:
-		GameData.needs_decreasing[need_type] = true
 		fun_timer.stop()
 	else:
 		GameData.update_need(need_type, Consts.FUN_INCREASE_RATE)
 		
 func _on_minigame_over():
 	fun_timer.stop()
-	GameData.needs_decreasing[need_type] = true
 
 		
 		

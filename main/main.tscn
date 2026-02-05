@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://d2bayih11h1pi"]
 
-[ext_resource type="Script" uid="uid://dfmig8ivkbqvg" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dqp4vcuul7wqb" path="res://girl/girl.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dfmig8ivkbqvg" path="res://main/main.gd" id="1_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://dqp4vcuul7wqb" path="res://girl/girl.tscn" id="2_xwkvk"]
+[ext_resource type="Script" uid="uid://bt7u3of37s2rn" path="res://main/fader.gd" id="3_xwkvk"]
 
 [node name="main" type="Node" unique_id=1280928773]
-script = ExtResource("1_0xm2m")
+script = ExtResource("1_pjrb6")
 
 [node name="ui_layer" type="CanvasLayer" parent="." unique_id=1952905286]
 
@@ -67,10 +68,32 @@ offset_bottom = 20.0
 grow_vertical = 2
 alignment = 1
 
-[node name="needs_timer" type="Timer" parent="." unique_id=1453948631]
-autostart = true
+[node name="fader" type="ColorRect" parent="ui_layer" unique_id=1055385884]
+unique_name_in_owner = true
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_xwkvk")
 
-[node name="girl" parent="." unique_id=1765931185 instance=ExtResource("2_0xm2m")]
+[node name="day_label" type="Label" parent="ui_layer/fader" unique_id=1110705021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Hello world!"
+
+[node name="girl" parent="." unique_id=1765931185 instance=ExtResource("2_xwkvk")]
 position = Vector2(650, 410)
-
-[connection signal="timeout" from="needs_timer" to="." method="_on_needs_timer_timeout"]

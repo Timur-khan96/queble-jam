@@ -26,13 +26,13 @@ func _update_buttons():
 	if selected_arr.is_empty():
 		give_button.disabled = true
 		buy_button.disabled = true
-		buy_button.text = "buy"
+		buy_button.text = "Buy"
 	else:
 		var index = selected_arr[0]
 		give_button.disabled = !fridge_items[index] > 0
 		var price = Consts.FOOD_PRICES[index]
 		buy_button.disabled = GameData.coins < price
-		buy_button.text = "buy (%d)" % price
+		buy_button.text = "Buy (%d)" % price
 
 func _on_give_button_pressed():
 	var selected_arr = fridge_list.get_selected_items()

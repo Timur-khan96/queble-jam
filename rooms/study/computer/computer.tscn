@@ -23,28 +23,29 @@ offset_right = 384.0
 offset_bottom = 640.0
 grow_horizontal = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=339328221]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1320062810]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=339328221]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/MarginContainer" unique_id=109446234]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=109446234]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer/MarginContainer/SubViewportContainer" unique_id=2146082066]
+[node name="SubViewport" type="SubViewport" parent="PanelContainer/VBoxContainer/MarginContainer/SubViewportContainer" unique_id=2146082066]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(640, 512)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="close_button" type="Button" parent="." unique_id=7856350]
-layout_mode = 0
-offset_left = 960.0
-offset_right = 1023.0
-offset_bottom = 63.0
+[node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=7856350]
+layout_mode = 2
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 40
-text = "❌"
+text = "Turn off the computer"
 
-[connection signal="pressed" from="close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]

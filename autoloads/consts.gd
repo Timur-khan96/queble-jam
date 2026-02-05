@@ -18,13 +18,6 @@ const NEED_ICONS: Dictionary[NEED_TYPE, String] = {
 	NEED_TYPE.HYGIENE : "uid://buko02mfac1nv" 
 }
 
-const NEED_DECREASE_RATE: Dictionary[NEED_TYPE, float] = {
-	NEED_TYPE.HUNGER : 0.008, 
-	NEED_TYPE.FUN : 0.006,
-	NEED_TYPE.ENERGY : 0.002,
-	NEED_TYPE.HYGIENE : 0.004
-}
-
 const FOOD_PRICES: Dictionary[FOOD_TYPE, int] = {
 	FOOD_TYPE.CHICKEN : 80,
 	FOOD_TYPE.FISH : 100,
@@ -41,7 +34,4 @@ const FOOD_SATIATION: Dictionary[FOOD_TYPE, float] = {
 	FOOD_TYPE.CHEESE: 0.28
 }
 
-const GIRL_SCALE = 0.4
-
-const FUN_INCREASE_RATE = 0.02
-const WASHING_SCENE_UID = "uid://ccxy8yvi4bx7y"
+const FUN_INCREASE_RATE = 0.04

@@ -194,5 +194,5 @@ func _on_soap_gui_input(event):
 func _on_foam_exited():
 	foam_counter -= 1
 	if foam_counter == 0:
-		GameData.update_need(Consts.NEED_TYPE.HYGIENE, 1)
+		GameData.finish_washing()
 		return_button.show()

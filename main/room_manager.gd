@@ -1,13 +1,16 @@
 extends Node
+class_name RoomManager
 
-@onready var coins_label := %coins_label
-@onready var girl := $girl
-@onready var h_needs_container = %h_needs_container
-@onready var v_needs_container = %v_needs_container
-
-
+var girl: Sprite2D
+var h_needs_container: HBoxContainer
+var v_needs_container:VBoxContainer
 
 var current_room_node: Room
+
+func _init(_girl, h_needs, v_needs):
+	girl = _girl
+	h_needs_container = h_needs
+	v_needs_container = v_needs
 
 func _ready():
 	for need_type in Consts.NEED_TYPE:
@@ -15,8 +18,6 @@ func _ready():
 		h_needs_container.add_child(bar)
 		bar.clicked.connect(_on_need_bar_clicked)
 	change_room(Consts.ROOM_TYPE.BEDROOM)
-	GameData.coins_updated.connect(_on_coins_updated)
-	_on_coins_updated()
 	_position_girl()
 	
 func _position_girl():
@@ -48,6 +49,7 @@ func _move_needs_bottom():
 		c.reparent(h_needs_container)
 	
 func _connect_room_signals():
+	current_room_node.girl_say_request.connect(func(text): girl.say(text))
 	match current_room_node.room_type:
 		Consts.ROOM_TYPE.STUDY:
 			current_room_node.computer_opened.connect(func(): 
@@ -60,16 +62,10 @@ func _connect_room_signals():
 			current_room_node.washing_started.connect(func():
 				_move_needs_left()
 				girl.hide())
-			current_room_node.washing_finished.connect(func():
+			current_room_node.washing_closed.connect(func():
 				_move_needs_bottom()
-				girl.show())
-	
-func _input(event):
-	if Input.is_action_just_pressed_by_event("exit", event):
-		get_tree().quit()
-		
-func _on_coins_updated():
-	coins_label.text = "💰: %d" % GameData.coins
+				girl.show()
+				girl.is_dirty = false)
 	
 func _on_need_bar_clicked(need_type: Consts.NEED_TYPE):
 	match need_type:
@@ -81,8 +77,3 @@ func _on_need_bar_clicked(need_type: Consts.NEED_TYPE):
 			change_room(Consts.ROOM_TYPE.BATHROOM)
 		Consts.NEED_TYPE.ENERGY:
 			change_room(Consts.ROOM_TYPE.BEDROOM)
-	
-func _on_needs_timer_timeout():
-	GameData.decrease_needs()
-	if GameData.needs[Consts.NEED_TYPE.HYGIENE] < 0.5:
-		girl.is_dirty = true

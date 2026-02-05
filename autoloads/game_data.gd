@@ -4,7 +4,6 @@ signal needs_updated()
 signal coins_updated()
 
 var needs: Dictionary[Consts.NEED_TYPE, float]
-var needs_decreasing: Dictionary[Consts.NEED_TYPE, bool]
 var fridge_items: Dictionary[Consts.FOOD_TYPE, int]
 var coins: int = 100
 
@@ -25,18 +24,24 @@ func _restart_needs():
 	print("restarting needs")
 	for need in Consts.NEED_TYPE:
 		needs[Consts.NEED_TYPE[need]] = 0
-		needs_decreasing[Consts.NEED_TYPE[need]] = true
 	needs[Consts.NEED_TYPE.ENERGY] = 1.
-		
-func decrease_needs():
-	for need in needs:
-		if !needs_decreasing[need]: continue
-		var value = Consts.NEED_DECREASE_RATE[need]
-		needs[need] = max(0, needs[need] - value)
-	needs_updated.emit()
+	
+func finish_washing():
+	needs[Consts.NEED_TYPE.HYGIENE] = 1.0
+	update_need(Consts.NEED_TYPE.ENERGY, -0.2)
 	
 func update_need(need: Consts.NEED_TYPE, value: float):
-	needs[need] = min(1., value + needs[need])
+	var new_value: float = needs[need] + value
+	if value > 0:
+		needs[need] = min(1., new_value)
+		var energy = needs[Consts.NEED_TYPE.ENERGY]
+		
+		if need == Consts.NEED_TYPE.HUNGER:
+			needs[Consts.NEED_TYPE.ENERGY] = max(0, energy - (value * 0.2))
+		elif need == Consts.NEED_TYPE.FUN:
+			needs[Consts.NEED_TYPE.ENERGY] = max(0, energy - value)
+	else:
+		needs[need] = max(0, new_value)
 	needs_updated.emit()
 	
 func update_coins(value: int):
