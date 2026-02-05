@@ -25,6 +25,8 @@ var state: STATE = STATE.IDLE:
 			_mouse_node.queue_free()
 			_mouse_node = null
 		if state == STATE.IDLE:
+			shower_head.visible = true
+			soap.visible = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			_init_mouse_follow()
@@ -94,6 +96,10 @@ func _build_dirt_grid(texture: Texture2D):
 				dirt_grid[gy * GRID_X + gx] = 1
 				total_dirt_cells += 1
 	
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		if !event.pressed:
+			state = STATE.IDLE
 	
 func _init_mouse_follow():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

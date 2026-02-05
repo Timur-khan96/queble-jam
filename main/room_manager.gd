@@ -1,6 +1,8 @@
 extends Node
 class_name RoomManager
 
+signal day_finished()
+
 var girl: Sprite2D
 var h_needs_container: HBoxContainer
 var v_needs_container:VBoxContainer
@@ -51,21 +53,30 @@ func _move_needs_bottom():
 func _connect_room_signals():
 	current_room_node.girl_say_request.connect(func(text): girl.say(text))
 	match current_room_node.room_type:
+		Consts.ROOM_TYPE.BEDROOM:
+			current_room_node.sleep_started.connect(day_finished.emit)
 		Consts.ROOM_TYPE.STUDY:
-			current_room_node.computer_opened.connect(func(): 
-				_move_needs_left()
-				girl.hide())
-			current_room_node.computer_closed.connect(func():
-				_move_needs_bottom()
-				girl.show())
+			_connect_study()
 		Consts.ROOM_TYPE.BATHROOM:
-			current_room_node.washing_started.connect(func():
-				_move_needs_left()
-				girl.hide())
-			current_room_node.washing_closed.connect(func():
-				_move_needs_bottom()
-				girl.show()
-				girl.is_dirty = false)
+			_connect_bathroom()
+			
+			
+func _connect_study():
+	current_room_node.computer_opened.connect(func(): 
+		_move_needs_left()
+		girl.hide())
+	current_room_node.computer_closed.connect(func():
+		_move_needs_bottom()
+		girl.show())
+				
+func _connect_bathroom():
+	current_room_node.washing_started.connect(func():
+		_move_needs_left()
+		girl.hide())
+	current_room_node.washing_closed.connect(func():
+		_move_needs_bottom()
+		girl.show()
+		girl.is_dirty = false)
 	
 func _on_need_bar_clicked(need_type: Consts.NEED_TYPE):
 	match need_type:

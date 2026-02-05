@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dfmig8ivkbqvg" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://dqp4vcuul7wqb" path="res://girl/girl.tscn" id="2_xwkvk"]
+[ext_resource type="Texture2D" uid="uid://cp1nmyockb7lk" path="res://UI/report/report_normal.png" id="3_3wy1v"]
 [ext_resource type="Script" uid="uid://bt7u3of37s2rn" path="res://main/fader.gd" id="3_xwkvk"]
+[ext_resource type="Texture2D" uid="uid://cfkkehfkrg8ug" path="res://UI/report/report_hover.png" id="4_kfbq2"]
+[ext_resource type="Texture2D" uid="uid://ckmg6pyn5onio" path="res://UI/report/report_disabled.png" id="5_67ri8"]
+[ext_resource type="Script" uid="uid://bj8wjss6nk2rd" path="res://main/report_button.gd" id="6_grrlh"]
+[ext_resource type="Texture2D" uid="uid://ddvyekhd1e7f4" path="res://UI/report/circle.png" id="7_0i4oc"]
 
 [node name="main" type="Node" unique_id=1280928773]
 script = ExtResource("1_pjrb6")
@@ -70,6 +75,7 @@ alignment = 1
 
 [node name="fader" type="ColorRect" parent="ui_layer" unique_id=1055385884]
 unique_name_in_owner = true
+visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,5 +101,45 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 128
 text = "Hello world!"
 
+[node name="top_right" type="Control" parent="ui_layer" unique_id=2120713442]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 72.0
+grow_horizontal = 0
+
+[node name="report_button" type="TextureButton" parent="ui_layer/top_right" unique_id=1390743124]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -127.0
+offset_bottom = 127.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_3wy1v")
+texture_hover = ExtResource("4_kfbq2")
+texture_disabled = ExtResource("5_67ri8")
+flip_h = true
+script = ExtResource("6_grrlh")
+
+[node name="cooldown_progress" type="TextureProgressBar" parent="ui_layer/top_right/report_button" unique_id=1438199398]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+fill_mode = 4
+texture_progress = ExtResource("7_0i4oc")
+tint_progress = Color(1, 1, 1, 0.5254902)
+
 [node name="girl" parent="." unique_id=1765931185 instance=ExtResource("2_xwkvk")]
 position = Vector2(650, 410)
+
+[connection signal="pressed" from="ui_layer/top_right/report_button" to="." method="_on_report_button_pressed"]

@@ -32,4 +32,40 @@ anchor_right = 0.401
 anchor_bottom = 0.825
 color = Color(1, 1, 0.08627451, 0.76862746)
 
+[node name="calendar" type="ColorRect" parent="background" unique_id=238353034]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22
+anchor_top = 0.12
+anchor_right = 0.313
+anchor_bottom = 0.32
+
+[node name="MarginContainer" type="MarginContainer" parent="background/calendar" unique_id=1314111996]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background/calendar/MarginContainer" unique_id=43991129]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="background/calendar/MarginContainer/VBoxContainer" unique_id=1939909166]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Day"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="day_label" type="Label" parent="background/calendar/MarginContainer/VBoxContainer" unique_id=838433763]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="background/bed" to="." method="_on_bed_gui_input"]

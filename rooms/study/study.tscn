@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ch88p7grtjkwd" path="res://rooms/study/study.gd" id="1_pnfcb"]
 [ext_resource type="PackedScene" uid="uid://dkdghneggsrnj" path="res://rooms/study/computer/computer.tscn" id="2_hhniq"]
+[ext_resource type="Texture2D" uid="uid://dfu3j80dojhx7" path="res://anomalies/severed_hand.png" id="4_4h6pv"]
 [ext_resource type="Texture2D" uid="uid://dfh0vnsh170lk" path="res://rooms/study/background_AI.png" id="4_gq7ca"]
 
 [node name="Study" type="Control" unique_id=1268775281]
@@ -35,6 +36,16 @@ anchor_top = 0.271
 anchor_right = 0.466
 anchor_bottom = 0.42
 color = Color(1, 1, 0, 0.6666667)
+
+[node name="severed_hand" type="TextureRect" parent="background" unique_id=217962951]
+custom_minimum_size = Vector2(465, 192.5)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.648
+anchor_right = 0.243
+anchor_bottom = 0.793
+texture = ExtResource("4_4h6pv")
+expand_mode = 1
 
 [node name="fun_timer" type="Timer" parent="." unique_id=206963346]
 

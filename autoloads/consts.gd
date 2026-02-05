@@ -35,3 +35,15 @@ const FOOD_SATIATION: Dictionary[FOOD_TYPE, float] = {
 }
 
 const FUN_INCREASE_RATE = 0.04
+
+const morning_phrases: Array[String] = [
+	"What a beautiful day! If only I weren't that hungry, bored and filthy.",
+	"I had such an amazing dream!",
+	"Wake up and smile, so much is ahead!"
+]
+
+const evening_phrases: Array[String] = [
+	"All good things come to an end.",
+	"I had a wonderful day!",
+	"I hope tomorrow will be just as good!"
+]

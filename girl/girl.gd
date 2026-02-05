@@ -1,5 +1,7 @@
 extends Sprite2D
 
+signal finished_talking()
+
 @onready var blink_timer = $blink_timer
 @onready var censorship = $censorship
 @onready var dirt = $dirt
@@ -55,6 +57,7 @@ func _on_text_box_finished():
 	text_box.queue_free()
 	text_box = null
 	is_talking = false
+	finished_talking.emit()
 	
 func _on_blink_timer_timeout():
 	is_blinking = true

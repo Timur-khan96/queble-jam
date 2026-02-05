@@ -2,6 +2,7 @@ extends Node
 
 signal needs_updated()
 signal coins_updated()
+signal day_updated()
 
 var needs: Dictionary[Consts.NEED_TYPE, float]
 var fridge_items: Dictionary[Consts.FOOD_TYPE, int]
@@ -11,6 +12,7 @@ var day: int = 1:
 	set(value):
 		if day == value: return
 		day = value
+		day_updated.emit()
 		_restart_needs()
 
 var creeps_high_score: int = 0
@@ -25,6 +27,7 @@ func _restart_needs():
 	for need in Consts.NEED_TYPE:
 		needs[Consts.NEED_TYPE[need]] = 0
 	needs[Consts.NEED_TYPE.ENERGY] = 1.
+	needs_updated.emit()
 	
 func finish_washing():
 	needs[Consts.NEED_TYPE.HYGIENE] = 1.0
