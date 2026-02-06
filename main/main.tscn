@@ -113,6 +113,7 @@ offset_bottom = 72.0
 grow_horizontal = 0
 
 [node name="report_button" type="TextureButton" parent="ui_layer/top_right" unique_id=1390743124]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -141,5 +142,3 @@ tint_progress = Color(1, 1, 1, 0.5254902)
 
 [node name="girl" parent="." unique_id=1765931185 instance=ExtResource("2_xwkvk")]
 position = Vector2(650, 410)
-
-[connection signal="pressed" from="ui_layer/top_right/report_button" to="." method="_on_report_button_pressed"]

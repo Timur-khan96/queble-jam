@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkdghneggsrnj" path="res://rooms/study/computer/computer.tscn" id="2_hhniq"]
 [ext_resource type="Texture2D" uid="uid://dfu3j80dojhx7" path="res://anomalies/severed_hand.png" id="4_4h6pv"]
 [ext_resource type="Texture2D" uid="uid://dfh0vnsh170lk" path="res://rooms/study/background_AI.png" id="4_gq7ca"]
+[ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="5_4h6pv"]
 
 [node name="Study" type="Control" unique_id=1268775281]
 physics_interpolation_mode = 0
@@ -38,6 +39,7 @@ anchor_bottom = 0.42
 color = Color(1, 1, 0, 0.6666667)
 
 [node name="severed_hand" type="TextureRect" parent="background" unique_id=217962951]
+visible = false
 custom_minimum_size = Vector2(465, 192.5)
 layout_mode = 1
 anchors_preset = -1
@@ -46,8 +48,6 @@ anchor_right = 0.243
 anchor_bottom = 0.793
 texture = ExtResource("4_4h6pv")
 expand_mode = 1
-
-[node name="fun_timer" type="Timer" parent="." unique_id=206963346]
+script = ExtResource("5_4h6pv")
 
 [connection signal="gui_input" from="background/computer" to="." method="_on_computer_gui_input"]
-[connection signal="timeout" from="fun_timer" to="." method="_on_fun_timer_timeout"]

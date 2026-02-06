@@ -1,6 +1,7 @@
 extends Node
 
 signal game_over()
+signal restart_pressed()
 
 var mob_scene: PackedScene
 
@@ -17,7 +18,7 @@ func _ready():
 	mob_scene = load("uid://c253seh5dhukh")
 	_update_score(0)
 	_update_high_score(GameData.creeps_high_score)
-	%game_over_label.hide()
+	%game_over_control.hide()
 
 func _update_score(new_value):
 	score = new_value
@@ -51,9 +52,12 @@ func _input(_event):
 func _on_player_hit():
 	$MobTimer.stop()
 	$score_timer.stop()
-	%game_over_label.show()
+	%game_over_control.show()
 	GameData.update_coins(score)
 	game_over.emit()
 
 func _on_score_timer_timeout():
 	_update_score(score + 1)
+
+func _on_restart_button_pressed():
+	restart_pressed.emit()

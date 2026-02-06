@@ -1,18 +1,13 @@
 [gd_scene format=3 uid="uid://btnp1u3uj17pm"]
 
+[ext_resource type="Script" uid="uid://7btlfgjjpy7d" path="res://rooms/bathroom/washing/mouse_shower_head.gd" id="1_8hq6f"]
 [ext_resource type="Texture2D" uid="uid://mk0h32eg85k1" path="res://rooms/bathroom/washing/shower_head.png" id="1_23ug4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hq6f"]
 size = Vector2(85, 252.5)
 
-[sub_resource type="Gradient" id="Gradient_r6pr3"]
-colors = PackedColorArray(0.1251907, 0.36134407, 1, 0.8, 0.7905918, 0.8954159, 1, 0.8784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dqkhh"]
-gradient = SubResource("Gradient_r6pr3")
-
 [sub_resource type="Gradient" id="Gradient_y5kec"]
-colors = PackedColorArray(0.26666668, 0.4862745, 1, 0.77254903, 1, 1, 1, 1)
+colors = PackedColorArray(0.26666668, 0.4862745, 1, 0.77254903, 0.74509805, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j3xdj"]
 gradient = SubResource("Gradient_y5kec")
@@ -23,11 +18,11 @@ emission_shape = 3
 emission_box_extents = Vector3(100, 80, 1)
 gravity = Vector3(0, 98, 0)
 scale_min = 2.0
-scale_max = 10.0
+scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_j3xdj")
-color_initial_ramp = SubResource("GradientTexture1D_dqkhh")
 
 [node name="mouse_shower_head" type="Area2D" unique_id=28307905 groups=["shower"]]
+script = ExtResource("1_8hq6f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=644059131]
 position = Vector2(-73.5, 115.75)
@@ -38,9 +33,10 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_23ug4")
 flip_h = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="sprite" unique_id=716700801]
+[node name="particles" type="GPUParticles2D" parent="sprite" unique_id=716700801]
+unique_name_in_owner = true
 position = Vector2(-194, 48)
-amount = 312
+amount = 512
 lifetime = 2.0
 speed_scale = 4.0
 process_material = SubResource("ParticleProcessMaterial_1kws3")

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dgma64p05r7fm" path="res://rooms/study/computer/computer.gd" id="1_4lxr8"]
 [ext_resource type="PackedScene" uid="uid://bfdr0v8s13jxt" path="res://rooms/study/mini_games/squash_the_creeps/squash_the_creeps.tscn" id="1_21dpd"]
+[ext_resource type="Texture2D" uid="uid://c4gqowu5k5grg" path="res://anomalies/scary_picture.jpg" id="3_i3uk5"]
+[ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="4_kc55n"]
 
 [node name="computer" type="Control" unique_id=1339816609]
 layout_mode = 3
@@ -42,10 +44,26 @@ handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
+[node name="scary_picture" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" unique_id=596290200]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_i3uk5")
+expand_mode = 3
+script = ExtResource("4_kc55n")
+anomaly = 3
+
 [node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=7856350]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 40
 text = "Turn off the computer"
 
+[node name="fun_timer" type="Timer" parent="." unique_id=1410679965]
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="timeout" from="fun_timer" to="." method="_on_fun_timer_timeout"]

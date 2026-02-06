@@ -39,10 +39,8 @@ func update_need(need: Consts.NEED_TYPE, value: float):
 		needs[need] = min(1., new_value)
 		var energy = needs[Consts.NEED_TYPE.ENERGY]
 		
-		if need == Consts.NEED_TYPE.HUNGER:
+		if need == Consts.NEED_TYPE.HUNGER or need == Consts.NEED_TYPE.FUN:
 			needs[Consts.NEED_TYPE.ENERGY] = max(0, energy - (value * 0.2))
-		elif need == Consts.NEED_TYPE.FUN:
-			needs[Consts.NEED_TYPE.ENERGY] = max(0, energy - value)
 	else:
 		needs[need] = max(0, new_value)
 	needs_updated.emit()

@@ -1,8 +1,8 @@
 extends Node
 
-signal anomalies_updated()
+signal anomalies_reset() #the girl
 
-enum ANOMALY {HAND, GIRL, SHOWER, MINIGAME}
+enum ANOMALY {HAND, GIRL, SHOWER, COMPUTER}
 
 var current_anomalies: Dictionary[ANOMALY, bool]
 
@@ -19,7 +19,7 @@ func reset_anomalies():
 		var r = ANOMALY.keys().pick_random()
 		current_anomalies[ANOMALY[r]] = true
 		print(r)
-	anomalies_updated.emit()
+	anomalies_reset.emit()
 	
 func are_active_anomalies() -> bool:
 	for a in current_anomalies:

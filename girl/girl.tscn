@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dkq186kkjdit7" path="res://girl/images/open_eyes_closed_mouth.png" id="1_4otov"]
 [ext_resource type="Script" uid="uid://d0hkk5pa8ymhq" path="res://girl/girl.gd" id="2_8ivrv"]
-[ext_resource type="Texture2D" uid="uid://b87eunl0ohnqp" path="res://girl/images/naked/soap_censorship.png" id="3_s4oi6"]
 [ext_resource type="Texture2D" uid="uid://d1w1ynfge08dp" path="res://girl/images/naked/dirt_layer.png" id="4_yso6t"]
 
 [node name="girl" type="Sprite2D" unique_id=1765931185]
@@ -15,10 +14,6 @@ script = ExtResource("2_8ivrv")
 wait_time = 3.0
 one_shot = true
 autostart = true
-
-[node name="censorship" type="Sprite2D" parent="." unique_id=1134300892]
-visible = false
-texture = ExtResource("3_s4oi6")
 
 [node name="dirt" type="Sprite2D" parent="." unique_id=1532556803]
 visible = false
