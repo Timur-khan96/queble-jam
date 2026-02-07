@@ -11,6 +11,8 @@ enum STATE {IDLE, SOAP, SHOWER}
 @onready var dirt = %dirt
 @onready var naked_girl = $naked_girl
 @onready var return_button = %return_button
+@onready var scrubbing_stream = $scrubbing_stream
+
 
 
 var _mouse_node: Node2D = null
@@ -21,6 +23,7 @@ var state: STATE = STATE.IDLE:
 	set(value):
 		if state == value: return
 		state = value
+		scrubbing_stream.stop()
 		if _mouse_node != null:
 			_mouse_node.queue_free()
 			_mouse_node = null
@@ -32,7 +35,7 @@ var state: STATE = STATE.IDLE:
 			_init_mouse_follow()
 			
 			
-const BRUSH_RADIUS = 128
+const BRUSH_RADIUS = 96
 const GRID_X := 48
 var GRID_Y: int
 
@@ -182,6 +185,8 @@ func _spawn_foam(gx: int, gy: int):
 	foam_counter += 1
 	foam.tree_exited.connect(_on_foam_exited)
 	naked_girl.add_child(foam)
+	if !scrubbing_stream.playing:
+		scrubbing_stream.play()
 			
 func _on_return_button_pressed():
 	state = STATE.IDLE

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bfdr0v8s13jxt" path="res://rooms/study/mini_games/squash_the_creeps/squash_the_creeps.tscn" id="1_21dpd"]
 [ext_resource type="Texture2D" uid="uid://c4gqowu5k5grg" path="res://anomalies/scary_picture.jpg" id="3_i3uk5"]
 [ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="4_kc55n"]
+[ext_resource type="AudioStream" uid="uid://c5qpnfga41t4p" path="res://rooms/study/mini_games/squash_the_creeps/art/House In a Forest Loop.ogg" id="5_rt20b"]
 
 [node name="computer" type="Control" unique_id=1339816609]
 layout_mode = 3
@@ -64,6 +65,10 @@ theme_override_font_sizes/font_size = 40
 text = "Turn off the computer"
 
 [node name="fun_timer" type="Timer" parent="." unique_id=1410679965]
+
+[node name="music_player" type="AudioStreamPlayer" parent="." unique_id=1289978339]
+stream = ExtResource("5_rt20b")
+volume_db = -2.0
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="timeout" from="fun_timer" to="." method="_on_fun_timer_timeout"]

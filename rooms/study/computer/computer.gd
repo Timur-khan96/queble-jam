@@ -4,6 +4,8 @@ signal closed()
 
 @onready var sub_viewport = %SubViewport
 @onready var fun_timer = $fun_timer
+@onready var music_player = $music_player
+
 
 @export var minigame_scene: PackedScene
 var minigame_node: Node
@@ -19,6 +21,8 @@ func _restart_minigame():
 	minigame_node.game_over.connect(_on_minigame_over)
 	minigame_node.restart_pressed.connect(_restart_minigame)
 	fun_timer.start()
+	if GameData.day > 1 and !music_player.playing:
+		$music_player.play()
 	sub_viewport.add_child(minigame_node)
 	
 func _on_close_button_pressed():

@@ -54,6 +54,7 @@ func _on_player_hit():
 	$score_timer.stop()
 	%game_over_control.show()
 	GameData.update_coins(score)
+	score = 0
 	game_over.emit()
 
 func _on_score_timer_timeout():

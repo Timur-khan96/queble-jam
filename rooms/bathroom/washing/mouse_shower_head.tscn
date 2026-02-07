@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7btlfgjjpy7d" path="res://rooms/bathroom/washing/mouse_shower_head.gd" id="1_8hq6f"]
 [ext_resource type="Texture2D" uid="uid://mk0h32eg85k1" path="res://rooms/bathroom/washing/shower_head.png" id="1_23ug4"]
+[ext_resource type="AudioStream" uid="uid://dte3l42jsv2u6" path="res://audio/sounds/shower.wav" id="3_r6pr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hq6f"]
 size = Vector2(85, 252.5)
@@ -40,3 +41,7 @@ amount = 512
 lifetime = 2.0
 speed_scale = 4.0
 process_material = SubResource("ParticleProcessMaterial_1kws3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1475840705]
+stream = ExtResource("3_r6pr3")
+autoplay = true

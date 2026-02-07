@@ -36,7 +36,7 @@ anchor_left = 0.344
 anchor_top = 0.271
 anchor_right = 0.466
 anchor_bottom = 0.42
-color = Color(1, 1, 0, 0.6666667)
+color = Color(1, 1, 0, 0.2901961)
 
 [node name="severed_hand" type="TextureRect" parent="background" unique_id=217962951]
 visible = false
@@ -49,5 +49,7 @@ anchor_bottom = 0.793
 texture = ExtResource("4_4h6pv")
 expand_mode = 1
 script = ExtResource("5_4h6pv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1701071818]
 
 [connection signal="gui_input" from="background/computer" to="." method="_on_computer_gui_input"]

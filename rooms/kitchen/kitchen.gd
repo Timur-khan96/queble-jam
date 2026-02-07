@@ -14,6 +14,9 @@ func toggle_fridge_ui():
 	if fridge_ui == null:
 		fridge_ui = fridge_ui_scene.instantiate()
 		add_child(fridge_ui)
+		$fridge_stream.play()
+		fridge_ui.crunch.connect($crunch_stream.play)
+		fridge_ui.buy.connect($buy_stream.play)
 		fridge_ui.global_position = %fridge.global_position
 	else:
 		fridge_ui.queue_free()

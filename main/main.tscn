@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://ckmg6pyn5onio" path="res://UI/report/report_disabled.png" id="5_67ri8"]
 [ext_resource type="Script" uid="uid://bj8wjss6nk2rd" path="res://main/report_button.gd" id="6_grrlh"]
 [ext_resource type="Texture2D" uid="uid://ddvyekhd1e7f4" path="res://UI/report/circle.png" id="7_0i4oc"]
+[ext_resource type="Shader" uid="uid://be04cjfdfp21a" path="res://shaders/color_invert.gdshader" id="9_0i4oc"]
+[ext_resource type="Texture2D" uid="uid://chejcgfwolaoi" path="res://girl/images/screamer.png" id="10_bsumw"]
+[ext_resource type="AudioStream" uid="uid://bb3ncqqusqf73" path="res://audio/anomaly_girl.ogg" id="11_bsumw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwcvl"]
+shader = ExtResource("9_0i4oc")
+shader_parameter/invert = false
 
 [node name="main" type="Node" unique_id=1280928773]
 script = ExtResource("1_pjrb6")
@@ -23,7 +30,7 @@ offset_bottom = 77.0
 [node name="coins_label" type="Label" parent="ui_layer/top_left" unique_id=965759066]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 
 [node name="bottom_center" type="Control" parent="ui_layer" unique_id=648198742]
 unique_name_in_owner = true
@@ -34,8 +41,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -40.0
+offset_top = -80.0
 offset_right = 20.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -75,7 +83,6 @@ alignment = 1
 
 [node name="fader" type="ColorRect" parent="ui_layer" unique_id=1055385884]
 unique_name_in_owner = true
-visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,6 +93,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("3_xwkvk")
 
 [node name="day_label" type="Label" parent="ui_layer/fader" unique_id=1110705021]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,6 +129,7 @@ anchor_right = 1.0
 offset_left = -127.0
 offset_bottom = 127.0
 grow_horizontal = 0
+focus_mode = 0
 texture_normal = ExtResource("3_3wy1v")
 texture_hover = ExtResource("4_kfbq2")
 texture_disabled = ExtResource("5_67ri8")
@@ -141,4 +150,24 @@ texture_progress = ExtResource("7_0i4oc")
 tint_progress = Color(1, 1, 1, 0.5254902)
 
 [node name="girl" parent="." unique_id=1765931185 instance=ExtResource("2_xwkvk")]
-position = Vector2(650, 410)
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.15
+anchor_right = 0.55
+anchor_bottom = 0.156
+
+[node name="screamer" type="TextureRect" parent="." unique_id=2143489507]
+visible = false
+z_index = 1000
+material = SubResource("ShaderMaterial_fwcvl")
+anchors_preset = -1
+anchor_left = 0.135
+anchor_top = 0.077
+anchor_right = 0.921
+anchor_bottom = 1.0
+texture = ExtResource("10_bsumw")
+
+[node name="music_stream" type="AudioStreamPlayer" parent="." unique_id=1720932416]
+stream = ExtResource("11_bsumw")
+volume_db = -4.0
+bus = &"Music"

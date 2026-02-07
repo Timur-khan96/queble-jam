@@ -15,6 +15,8 @@ func _on_bath_gui_input(event):
 		if event.pressed:
 			if is_equal_approx(GameData.needs[need_type], 1.):
 				girl_say_request.emit("I'm already clean!")
+			elif AnomalyServer.current_anomalies[AnomalyServer.ANOMALY.GIRL]:
+				girl_screamer_request.emit()
 			else:
 				_start_washing()
 			

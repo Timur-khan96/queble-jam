@@ -3,6 +3,8 @@ extends CharacterBody3D
 signal hit
 
 @onready var pivot = $Pivot
+@onready var animation_player = $AnimationPlayer
+
 
 const speed = 14
 const fall_acceleration = 75
@@ -25,6 +27,9 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		pivot.basis = Basis.looking_at(direction)
+		animation_player.speed_scale = 4
+	else:
+		animation_player.speed_scale = 1
 		
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
@@ -40,6 +45,7 @@ func _physics_process(delta):
 	
 	velocity = target_velocity
 	move_and_slide()
+	pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 	
 func _check_collisions():
 	for index in range(get_slide_collision_count()):

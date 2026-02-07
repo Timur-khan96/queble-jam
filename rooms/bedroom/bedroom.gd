@@ -3,7 +3,7 @@ extends Room
 signal sleep_started
 
 const sleep_refusals: Array[String] = ["I don't want to sleep!",
-"Rest is for the dead!", "There's stuff to do today."]
+"Rest is for the dead!", "There's stuff to do today.", "I'm not tired yet."]
 
 func _ready():
 	super._ready()
@@ -26,5 +26,5 @@ func _can_sleep():
 		if n == Consts.NEED_TYPE.ENERGY:
 			if GameData.needs[n] > 0.5: return false
 			else: continue
-		if GameData.needs[n] < 0.9: return false
+		if GameData.needs[n] < 0.8: return false
 	return true

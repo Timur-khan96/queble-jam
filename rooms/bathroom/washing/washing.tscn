@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4f2rcchw673r" path="res://girl/images/naked/naked_closed_mouth.png" id="6_qy677"]
 [ext_resource type="Texture2D" uid="uid://b87eunl0ohnqp" path="res://girl/images/naked/soap_censorship.png" id="8_ih7os"]
 [ext_resource type="Shader" uid="uid://ccm0rrtbaaf75" path="res://shaders/washing.gdshader" id="9_m00ae"]
+[ext_resource type="AudioStream" uid="uid://cc3qogsaakd2y" path="res://audio/sounds/scrubbing.wav" id="10_qy677"]
 [ext_resource type="Texture2D" uid="uid://d1w1ynfge08dp" path="res://girl/images/naked/dirt_layer.png" id="10_xgens"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qy677"]
@@ -63,6 +64,13 @@ offset_bottom = 228.0
 grow_horizontal = 0
 grow_vertical = 2
 
+[node name="soap" type="TextureRect" parent="center_right/VBoxContainer" unique_id=1010481206]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 2
+texture = ExtResource("3_a2257")
+expand_mode = 1
+
 [node name="shower_head" type="TextureRect" parent="center_right/VBoxContainer" unique_id=147214807]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 128)
@@ -70,13 +78,6 @@ layout_mode = 2
 texture = ExtResource("2_fsg1l")
 expand_mode = 1
 flip_h = true
-
-[node name="soap" type="TextureRect" parent="center_right/VBoxContainer" unique_id=1010481206]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 192)
-layout_mode = 2
-texture = ExtResource("3_a2257")
-expand_mode = 1
 
 [node name="return_button" type="Button" parent="center_right/VBoxContainer" unique_id=765144452]
 unique_name_in_owner = true
@@ -111,6 +112,9 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_jamkd")
 texture = ExtResource("10_xgens")
 
-[connection signal="gui_input" from="center_right/VBoxContainer/shower_head" to="." method="_on_shower_head_gui_input"]
+[node name="scrubbing_stream" type="AudioStreamPlayer" parent="." unique_id=1226962967]
+stream = ExtResource("10_qy677")
+
 [connection signal="gui_input" from="center_right/VBoxContainer/soap" to="." method="_on_soap_gui_input"]
+[connection signal="gui_input" from="center_right/VBoxContainer/shower_head" to="." method="_on_shower_head_gui_input"]
 [connection signal="pressed" from="center_right/VBoxContainer/return_button" to="." method="_on_return_button_pressed"]

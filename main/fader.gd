@@ -5,9 +5,9 @@ extends ColorRect
 func _ready():
 	day_label.modulate = Color(0,0,0,0)
 
-func fade_from_black():
+func fade_from_black(fade_time: int = 1):
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "color", Color(0, 0, 0, 0), 1)
+	tween.tween_property(self, "color", Color(0, 0, 0, 0), fade_time)
 	await tween.finished
 	hide()
 		

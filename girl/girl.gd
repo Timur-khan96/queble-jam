@@ -1,4 +1,6 @@
-extends Sprite2D
+extends TextureRect
+
+signal girl_scream()
 
 signal finished_talking()
 
@@ -24,6 +26,7 @@ var is_anomaly: bool = false:
 		is_anomaly = value
 		if is_anomaly:
 			texture = textures["anomaly"]
+			get_tree().create_timer(5.0).timeout.connect(_on_girl_scream)
 		else:
 			_update_main_texture()
 
@@ -70,8 +73,8 @@ func say(text: String):
 	is_talking = true
 	text_box = text_box_scene.instantiate()
 	add_child(text_box)
-	text_box.global_position.x -= text_box.MAX_WIDTH * 0.75
-	text_box.global_position.y -= 384 
+	text_box.global_position.x -= text_box.MAX_WIDTH * 0.5
+	text_box.global_position.y += 128
 	text_box.display_text(text)
 	text_box.finished_display.connect(_on_text_box_finished)
 	
@@ -89,3 +92,7 @@ func _on_blink_timer_timeout():
 	is_blinking = false
 	_update_main_texture()
 	blink_timer.start(randf_range(3, 6))
+	
+func _on_girl_scream():
+	if is_anomaly:
+		girl_scream.emit()

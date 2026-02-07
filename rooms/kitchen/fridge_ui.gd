@@ -1,5 +1,8 @@
 extends Control
 
+signal crunch() #sound
+signal buy() #sound
+
 @onready var fridge_list: ItemList = %fridge_list
 @onready var give_button := %give_button
 @onready var buy_button := %buy_button
@@ -42,9 +45,9 @@ func _on_give_button_pressed():
 		
 	var selected_idx = selected_arr[0]
 	if fridge_items[selected_idx] <= 0:
-		push_error("No food item like this to give!!!")
+		push_error("No food item like this to give")
 		return
-	
+	crunch.emit()
 	fridge_items[selected_idx] -= 1
 	GameData.update_need(Consts.NEED_TYPE.HUNGER, Consts.FOOD_SATIATION[selected_idx])
 	_update_fridge()
@@ -57,6 +60,7 @@ func _on_buy_button_pressed():
 	if selected_arr.is_empty():
 		push_error("Trying to buy but nothing is selected in the fridge!")
 		return
+	buy.emit()
 	var selected_idx = selected_arr[0]
 	fridge_items[selected_idx] += 1
 	GameData.update_coins(-Consts.FOOD_PRICES[selected_idx])

@@ -4,10 +4,14 @@
 [ext_resource type="Script" uid="uid://d0hkk5pa8ymhq" path="res://girl/girl.gd" id="2_8ivrv"]
 [ext_resource type="Texture2D" uid="uid://d1w1ynfge08dp" path="res://girl/images/naked/dirt_layer.png" id="4_yso6t"]
 
-[node name="girl" type="Sprite2D" unique_id=1765931185]
+[node name="girl" type="TextureRect" unique_id=1316401473]
 z_index = 1
+offset_right = 1024.0
+offset_bottom = 1536.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_4otov")
+expand_mode = 1
+stretch_mode = 6
 script = ExtResource("2_8ivrv")
 
 [node name="blink_timer" type="Timer" parent="." unique_id=938693127]
@@ -15,8 +19,9 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="dirt" type="Sprite2D" parent="." unique_id=1532556803]
+[node name="dirt" type="TextureRect" parent="." unique_id=248229008]
 visible = false
+layout_mode = 0
 texture = ExtResource("4_yso6t")
 
 [connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]

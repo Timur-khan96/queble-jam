@@ -5,9 +5,6 @@ signal anomalies_reset() #the girl
 enum ANOMALY {HAND, GIRL, SHOWER, COMPUTER}
 
 var current_anomalies: Dictionary[ANOMALY, bool]
-
-func _ready():
-	_clear_anomalies()
 	
 func _clear_anomalies():
 	for a in ANOMALY.keys():
@@ -18,7 +15,7 @@ func reset_anomalies():
 	for i in range(GameData.day - 1):
 		var r = ANOMALY.keys().pick_random()
 		current_anomalies[ANOMALY[r]] = true
-		print(r)
+		#print(r)
 	anomalies_reset.emit()
 	
 func are_active_anomalies() -> bool:

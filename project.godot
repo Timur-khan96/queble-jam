@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="queble_jam"
-run/main_scene="uid://d2bayih11h1pi"
+run/main_scene="uid://bvkuixxgne42u"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://b0a8tteyadlqo"
 
 [autoload]
 

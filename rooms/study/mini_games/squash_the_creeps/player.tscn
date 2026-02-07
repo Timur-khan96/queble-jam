@@ -10,6 +10,68 @@ radius = 0.8
 height = 0.4
 radius = 1.0
 
+[sub_resource type="Animation" id="Animation_iorpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pfet6"]
+resource_name = "float"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.7, 1.2),
+"transitions": PackedFloat32Array(0.3298771, 2.378414, 1),
+"update": 0,
+"values": [Vector3(0, 0.4, 0), Vector3(0, 0.65, 0), Vector3(0, 0.35, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1.2),
+"transitions": PackedFloat32Array(0.3298771, 0.4204483, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.13962634, 0, 0), Vector3(-0.15707964, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jeqnf"]
+_data = {
+&"RESET": SubResource("Animation_iorpb"),
+&"float": SubResource("Animation_pfet6")
+}
+
 [node name="player" type="CharacterBody3D" unique_id=1224333764]
 collision_mask = 6
 script = ExtResource("1_iorpb")
@@ -19,6 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("SphereShape3D_iorpb")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=444594263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="character" parent="Pivot" unique_id=1747802473 instance=ExtResource("1_kxyv5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -31,5 +94,9 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mob_detector" unique_id=1685653090]
 shape = SubResource("CylinderShape3D_iorpb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=292004509]
+libraries/ = SubResource("AnimationLibrary_jeqnf")
+autoplay = &"float"
 
 [connection signal="body_entered" from="mob_detector" to="." method="_on_mob_detector_body_entered"]

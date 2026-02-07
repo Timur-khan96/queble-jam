@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bfvotwiwubfb8" path="res://rooms/bedroom/bedroom.gd" id="1_25nom"]
 [ext_resource type="Texture2D" uid="uid://kgcb6dhsg6h8" path="res://rooms/bedroom/background_AI.png" id="2_61vwq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25nom"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Bedroom" type="Control" unique_id=662676082]
 physics_interpolation_mode = 0
 layout_mode = 3
@@ -30,23 +33,25 @@ anchors_preset = -1
 anchor_top = 0.393
 anchor_right = 0.401
 anchor_bottom = 0.825
-color = Color(1, 1, 0.08627451, 0.76862746)
+color = Color(1, 1, 0.08627451, 0.27058825)
 
-[node name="calendar" type="ColorRect" parent="background" unique_id=238353034]
+[node name="calendar" type="PanelContainer" parent="background" unique_id=1449660712]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.22
-anchor_top = 0.12
+anchor_left = 0.225
+anchor_top = 0.119
 anchor_right = 0.313
-anchor_bottom = 0.32
-
-[node name="MarginContainer" type="MarginContainer" parent="background/calendar" unique_id=1314111996]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.243
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_25nom")
+
+[node name="MarginContainer" type="MarginContainer" parent="background/calendar" unique_id=1314111996]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="background/calendar/MarginContainer" unique_id=43991129]
 layout_mode = 2
@@ -63,7 +68,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 64
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
