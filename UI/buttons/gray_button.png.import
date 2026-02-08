@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://css6fhexa8mm2"
-path="res://.godot/imported/anomaly.png-aaaa49ea71645789250356c0de224058.ctex"
+uid="uid://dkfiqi316vkid"
+path="res://.godot/imported/gray_button.png-5ce708ed7005c4136337279b41ae05ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://girl/images/anomaly.png"
-dest_files=["res://.godot/imported/anomaly.png-aaaa49ea71645789250356c0de224058.ctex"]
+source_file="res://UI/buttons/gray_button.png"
+dest_files=["res://.godot/imported/gray_button.png-5ce708ed7005c4136337279b41ae05ea.ctex"]
 
 [params]
 

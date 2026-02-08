@@ -3,8 +3,17 @@ extends TextureRect
 @export var anomaly: AnomalyServer.ANOMALY
 
 func _ready():
-	if AnomalyServer.current_anomalies[anomaly]:
+	visible = false
+	AnomalyServer.anomalies_reset.connect(_sync)
+	print(AnomalyServer.ANOMALY.keys()[anomaly], " ready")
+	#AnomalyServer.anomaly_resolved.connect(_on_resolved)
+	_sync()
+		
+func _sync():
+	if AnomalyServer.current_anomalies.get(anomaly, false):
 		show_anomaly()
+	else:
+		hide_anomaly()
 
 func show_anomaly():
 	visible = true

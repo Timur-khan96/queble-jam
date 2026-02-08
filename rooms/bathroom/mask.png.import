@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bc4nain5jpkmm"
+path="res://.godot/imported/mask.png-28942959242324af51c78190461e10f5.res"
+
+[deps]
+
+source_file="res://rooms/bathroom/mask.png"
+dest_files=["res://.godot/imported/mask.png-28942959242324af51c78190461e10f5.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -12,11 +12,6 @@ var computer_off_stream: AudioStream = load("uid://dff75vkkeq820")
 
 func _ready():
 	super._ready()
-
-func _on_computer_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			_start_computer()
 			
 func _start_computer():
 	if computer_node != null: 
@@ -47,5 +42,9 @@ func _input(event):
 		_close_computer()
 		get_viewport().set_input_as_handled()
 
-		
-		
+func _on_background_pressed():
+	var anomalies = AnomalyServer.current_anomalies
+	if anomalies[AnomalyServer.ANOMALY.GIRL] or anomalies[AnomalyServer.ANOMALY.EYES] or anomalies[AnomalyServer.ANOMALY.SPEECH]:
+		girl_screamer_request.emit()
+	else:
+		_start_computer()

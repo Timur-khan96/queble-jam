@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="4_kc55n"]
 [ext_resource type="AudioStream" uid="uid://c5qpnfga41t4p" path="res://rooms/study/mini_games/squash_the_creeps/art/House In a Forest Loop.ogg" id="5_rt20b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rt20b"]
+bg_color = Color(0.4724152, 0.4724152, 0.4724151, 1)
+
 [node name="computer" type="Control" unique_id=1339816609]
 layout_mode = 3
 anchors_preset = 15
@@ -25,6 +28,7 @@ offset_left = -384.0
 offset_right = 384.0
 offset_bottom = 640.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rt20b")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1320062810]
 layout_mode = 2
@@ -56,9 +60,10 @@ grow_vertical = 2
 texture = ExtResource("3_i3uk5")
 expand_mode = 3
 script = ExtResource("4_kc55n")
-anomaly = 3
+anomaly = 2
 
 [node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=7856350]
+custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 40

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2r43duhpdry3"
-path="res://.godot/imported/background_AI.png-80fb77f231e413ede1b86ef2c9eeb18b.ctex"
+uid="uid://css6fhexa8mm2"
+path="res://.godot/imported/anomaly.png-aa264c046a2bb9b3d5cba551405ce67a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/bathroom/background_AI.png"
-dest_files=["res://.godot/imported/background_AI.png-80fb77f231e413ede1b86ef2c9eeb18b.ctex"]
+source_file="res://girl/images/anomaly/anomaly.png"
+dest_files=["res://.godot/imported/anomaly.png-aa264c046a2bb9b3d5cba551405ce67a.ctex"]
 
 [params]
 

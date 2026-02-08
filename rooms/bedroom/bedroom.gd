@@ -12,15 +12,7 @@ func _ready():
 	
 func _update_calendar():
 	%day_label.text = str(GameData.day)
-
-func _on_bed_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			if _can_sleep():
-				sleep_started.emit()
-			else:
-				girl_say_request.emit(sleep_refusals.pick_random())
-				
+			
 func _can_sleep():
 	for n in GameData.needs:
 		if n == Consts.NEED_TYPE.ENERGY:
@@ -28,3 +20,9 @@ func _can_sleep():
 			else: continue
 		if GameData.needs[n] < 0.8: return false
 	return true
+
+func _on_background_pressed():
+	if _can_sleep():
+		sleep_started.emit()
+	else:
+		girl_say_request.emit(sleep_refusals.pick_random())

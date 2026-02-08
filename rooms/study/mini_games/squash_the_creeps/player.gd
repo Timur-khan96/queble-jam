@@ -4,7 +4,7 @@ signal hit
 
 @onready var pivot = $Pivot
 @onready var animation_player = $AnimationPlayer
-
+@onready var jump_stream = $jump_stream
 
 const speed = 14
 const fall_acceleration = 75
@@ -12,6 +12,7 @@ const jump_impulse = 20
 const bounce_impulse = 16
 
 var target_velocity = Vector3.ZERO
+var on_floor: bool = true
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -35,9 +36,13 @@ func _physics_process(delta):
 	target_velocity.z = direction.z * speed
 	
 	if is_on_floor():
+		on_floor = true
 		target_velocity.y = 0
 		if Input.is_action_just_pressed("jump"):
 			target_velocity.y += jump_impulse
+			on_floor = false
+			jump_stream.play()
+			
 	else:
 		target_velocity.y -= fall_acceleration * delta
 	
@@ -55,6 +60,7 @@ func _check_collisions():
 		var collider = collision.get_collider()
 		if collider.is_in_group("mob"):
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
+				on_floor = false
 				collider.squash()
 				target_velocity.y = bounce_impulse
 				break

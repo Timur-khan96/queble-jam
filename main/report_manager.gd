@@ -23,6 +23,7 @@ func _on_report_button_pressed():
 			n.revert_anomaly()
 		elif n.has_method("hide_anomaly"):
 			n.hide_anomaly()
+		print(AnomalyServer.ANOMALY.keys()[n.anomaly])
 		AnomalyServer.current_anomalies[n.anomaly] = false
 
 	fader.fade_from_black()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfu3j80dojhx7"
-path="res://.godot/imported/severed_hand.png-6139ed57f529f4468bc7433d10a80c03.ctex"
+uid="uid://iryibwn1ra2s"
+path="res://.godot/imported/background.png-d5f1007eca4fc34e5e46a646c3c023e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://anomalies/severed_hand.png"
-dest_files=["res://.godot/imported/severed_hand.png-6139ed57f529f4468bc7433d10a80c03.ctex"]
+source_file="res://rooms/kitchen/background.png"
+dest_files=["res://.godot/imported/background.png-d5f1007eca4fc34e5e46a646c3c023e5.ctex"]
 
 [params]
 

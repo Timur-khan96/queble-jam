@@ -2,9 +2,17 @@
 
 [ext_resource type="Script" uid="uid://ch88p7grtjkwd" path="res://rooms/study/study.gd" id="1_pnfcb"]
 [ext_resource type="PackedScene" uid="uid://dkdghneggsrnj" path="res://rooms/study/computer/computer.tscn" id="2_hhniq"]
-[ext_resource type="Texture2D" uid="uid://dfu3j80dojhx7" path="res://anomalies/severed_hand.png" id="4_4h6pv"]
-[ext_resource type="Texture2D" uid="uid://dfh0vnsh170lk" path="res://rooms/study/background_AI.png" id="4_gq7ca"]
-[ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="5_4h6pv"]
+[ext_resource type="Shader" uid="uid://vuc3fef5ngy2" path="res://shaders/background_outline.gdshader" id="3_074wr"]
+[ext_resource type="Texture2D" uid="uid://dbi7cl60iblp8" path="res://rooms/study/shader_mask.png" id="4_00adj"]
+[ext_resource type="Texture2D" uid="uid://dma35f7g5hpwv" path="res://rooms/study/background.png" id="5_xrrbp"]
+[ext_resource type="BitMap" uid="uid://3yomckl1vdnl" path="res://rooms/study/mask.png" id="6_6y1yc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mr7hi"]
+shader = ExtResource("3_074wr")
+shader_parameter/mask_tex = ExtResource("4_00adj")
+shader_parameter/outline_color = Color(1, 1, 0, 1)
+shader_parameter/thickness = 4.0
+shader_parameter/hovered = false
 
 [node name="Study" type="Control" unique_id=1268775281]
 physics_interpolation_mode = 0
@@ -18,38 +26,18 @@ script = ExtResource("1_pnfcb")
 computer_scene = ExtResource("2_hhniq")
 metadata/_custom_type_script = "uid://cya78q010p344"
 
-[node name="background" type="TextureRect" parent="." unique_id=8467799]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1701071818]
+
+[node name="background" type="TextureButton" parent="." unique_id=577213026]
+material = SubResource("ShaderMaterial_mr7hi")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("4_gq7ca")
-expand_mode = 1
+focus_mode = 0
+texture_normal = ExtResource("5_xrrbp")
+texture_click_mask = ExtResource("6_6y1yc")
 
-[node name="computer" type="ColorRect" parent="background" unique_id=1167764157]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.344
-anchor_top = 0.271
-anchor_right = 0.466
-anchor_bottom = 0.42
-color = Color(1, 1, 0, 0.2901961)
-
-[node name="severed_hand" type="TextureRect" parent="background" unique_id=217962951]
-visible = false
-custom_minimum_size = Vector2(465, 192.5)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.648
-anchor_right = 0.243
-anchor_bottom = 0.793
-texture = ExtResource("4_4h6pv")
-expand_mode = 1
-script = ExtResource("5_4h6pv")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1701071818]
-
-[connection signal="gui_input" from="background/computer" to="." method="_on_computer_gui_input"]
+[connection signal="pressed" from="background" to="." method="_on_background_pressed"]

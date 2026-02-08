@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dxp65rq52lfgn"
+path="res://.godot/imported/mask.png-2568ce8a607633963bbd88074ddafb5f.res"
+
+[deps]
+
+source_file="res://rooms/bedroom/mask.png"
+dest_files=["res://.godot/imported/mask.png-2568ce8a607633963bbd88074ddafb5f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

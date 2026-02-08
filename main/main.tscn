@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://chejcgfwolaoi" path="res://girl/images/screamer.png" id="10_bsumw"]
 [ext_resource type="AudioStream" uid="uid://bb3ncqqusqf73" path="res://audio/anomaly_girl.ogg" id="11_bsumw"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsumw"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fwcvl"]
 shader = ExtResource("9_0i4oc")
 shader_parameter/invert = false
@@ -26,10 +28,12 @@ offset_left = 32.0
 offset_top = 32.0
 offset_right = 72.0
 offset_bottom = 77.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bsumw")
 
 [node name="coins_label" type="Label" parent="ui_layer/top_left" unique_id=965759066]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 48
 
 [node name="bottom_center" type="Control" parent="ui_layer" unique_id=648198742]

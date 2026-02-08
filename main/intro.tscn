@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bl4ujapwb3vbb" path="res://main/intro.gd" id="1_sv3yb"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sv3yb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ui43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wbhlm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xd65n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kcfd"]
+
 [node name="intro" type="Control" unique_id=379096823]
 layout_mode = 3
 anchors_preset = 15
@@ -47,7 +57,17 @@ autowrap_mode = 3
 [node name="start_button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1773526260]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.3647059, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sv3yb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1ui43")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wbhlm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xd65n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1kcfd")
 text = "START"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]

@@ -2,10 +2,22 @@
 
 [ext_resource type="Script" uid="uid://b06dgvn8gspux" path="res://rooms/kitchen/kitchen.gd" id="1_ivslp"]
 [ext_resource type="PackedScene" uid="uid://c374g58gx1h43" path="res://rooms/kitchen/fridge_ui.tscn" id="2_i5yp4"]
-[ext_resource type="Texture2D" uid="uid://cny3pm2blvamh" path="res://rooms/kitchen/background_AI.png" id="3_i5yp4"]
+[ext_resource type="Shader" uid="uid://vuc3fef5ngy2" path="res://shaders/background_outline.gdshader" id="3_shuhi"]
 [ext_resource type="AudioStream" uid="uid://cncfrojxo6rqb" path="res://audio/sounds/fridge_open.wav" id="4_i5yp4"]
+[ext_resource type="Texture2D" uid="uid://dl517ry53tdvd" path="res://rooms/kitchen/shader_mask.png" id="4_rclcq"]
 [ext_resource type="AudioStream" uid="uid://vqg8umokgjlk" path="res://audio/sounds/crunch.wav" id="5_ddnnw"]
+[ext_resource type="Texture2D" uid="uid://iryibwn1ra2s" path="res://rooms/kitchen/background.png" id="5_l2vd0"]
+[ext_resource type="BitMap" uid="uid://lbeusv0g6hew" path="res://rooms/kitchen/mask.png" id="6_6e6if"]
 [ext_resource type="AudioStream" uid="uid://dtehrh5wprhl2" path="res://audio/sounds/buy.wav" id="6_pjq1d"]
+[ext_resource type="Texture2D" uid="uid://mgjdlp6ufnj6" path="res://rooms/kitchen/knife.png" id="10_rclcq"]
+[ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="11_l2vd0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2yn8"]
+shader = ExtResource("3_shuhi")
+shader_parameter/mask_tex = ExtResource("4_rclcq")
+shader_parameter/outline_color = Color(1, 1, 0, 1)
+shader_parameter/thickness = 4.0
+shader_parameter/hovered = false
 
 [node name="Kitchen" type="Control" unique_id=978103329]
 layout_mode = 3
@@ -26,26 +38,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="background" type="TextureRect" parent="." unique_id=119779462]
-unique_name_in_owner = true
+[node name="background" type="TextureButton" parent="." unique_id=987895908]
+material = SubResource("ShaderMaterial_t2yn8")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_i5yp4")
-
-[node name="fridge" type="ColorRect" parent="background" unique_id=1722706674]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.214
-anchor_top = 0.225
-anchor_right = 0.378
-anchor_bottom = 0.771
-color = Color(1, 1, 0.59607846, 0.48235294)
+focus_mode = 0
+texture_normal = ExtResource("5_l2vd0")
+texture_click_mask = ExtResource("6_6e6if")
 
 [node name="fridge_stream" type="AudioStreamPlayer" parent="." unique_id=858933718]
 stream = ExtResource("4_i5yp4")
@@ -56,4 +59,24 @@ stream = ExtResource("5_ddnnw")
 [node name="buy_stream" type="AudioStreamPlayer" parent="." unique_id=780760268]
 stream = ExtResource("6_pjq1d")
 
-[connection signal="gui_input" from="background/fridge" to="." method="_on_fridge_gui_input"]
+[node name="knife" type="TextureRect" parent="." unique_id=1200461600]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.398
+anchor_top = 0.447
+anchor_right = 0.483
+anchor_bottom = 0.594
+texture = ExtResource("10_rclcq")
+expand_mode = 1
+script = ExtResource("11_l2vd0")
+anomaly = 5
+
+[node name="fridge_marker" type="Control" parent="." unique_id=1023282571]
+layout_mode = 1
+anchor_left = 0.045
+anchor_top = 0.266
+anchor_right = 0.045
+anchor_bottom = 0.266
+
+[connection signal="pressed" from="background" to="." method="_on_background_pressed"]

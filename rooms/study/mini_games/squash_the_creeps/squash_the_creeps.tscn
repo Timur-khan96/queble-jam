@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1xoumvlhhf5r" path="res://rooms/study/mini_games/squash_the_creeps/squash_the_creeps.gd" id="1_nqk4u"]
 [ext_resource type="PackedScene" uid="uid://ddgiv7d5s4hj1" path="res://rooms/study/mini_games/squash_the_creeps/player.tscn" id="1_o6qdd"]
+[ext_resource type="AudioStream" uid="uid://cxgi4kuy4eqn3" path="res://rooms/study/mini_games/squash_the_creeps/audio/pop.wav" id="3_xa5t1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okcno"]
 size = Vector3(60, 2, 60)
@@ -17,6 +18,44 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Animation" id="Animation_xa5t1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%combo_label:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ew2aj"]
+resource_name = "rotate"
+length = 0.8
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%combo_label:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2792526803190927, 0.0, 0.2792526803190927, 0.0, -0.2792526803190927, 0.0, 0.2792526803190927, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_reeqe"]
+_data = {
+&"RESET": SubResource("Animation_xa5t1"),
+&"rotate": SubResource("Animation_ew2aj")
+}
+
 [node name="squash_the_creeps" type="Node" unique_id=1985634732]
 script = ExtResource("1_nqk4u")
 
@@ -30,10 +69,6 @@ shape = SubResource("BoxShape3D_okcno")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground" unique_id=260901977]
 mesh = SubResource("BoxMesh_o6qdd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ground" unique_id=1070282578]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 13, 0)
-shadow_enabled = true
 
 [node name="player" parent="." unique_id=1224333764 instance=ExtResource("1_o6qdd")]
 
@@ -112,7 +147,48 @@ theme_override_font_sizes/font_size = 36
 text = "RESTART 
 [ENTER]"
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1070282578]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 12, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="pop_stream" type="AudioStreamPlayer" parent="." unique_id=2078771668]
+stream = ExtResource("3_xa5t1")
+
+[node name="combo_control" type="Control" parent="." unique_id=1715157460]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="combo_label" type="Label" parent="combo_control" unique_id=1844861098]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 100.0
+offset_right = 63.5
+offset_bottom = 45.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9841029, 0.00063852663, 0.0003505844, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+
+[node name="combo_label_show_timer" type="Timer" parent="combo_control" unique_id=316125936]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="combo_animation" type="AnimationPlayer" parent="combo_control" unique_id=496931584]
+libraries/ = SubResource("AnimationLibrary_reeqe")
+
 [connection signal="hit" from="player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="score_timer" to="." method="_on_score_timer_timeout"]
 [connection signal="pressed" from="game_over_control/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="combo_control/combo_label_show_timer" to="." method="_on_combo_label_show_timer_timeout"]

@@ -17,6 +17,7 @@ var animated_coins: int = 0:
 
 func _ready():
 	GameData.restart_needs()
+	_start_day()
 	room_manager = RoomManager.new(girl, %h_needs_container, %v_needs_container)
 	add_child(room_manager)
 	room_manager.day_finished.connect(_on_day_finished)
@@ -32,7 +33,6 @@ func _ready():
 	_on_coins_updated()
 	GameData.refill_fridge()
 	
-	_start_day(2)
 	
 func _start_day(fader_time: int = 1):
 	girl.is_dirty = true
@@ -86,11 +86,12 @@ func _scream():
 	music_stream.stream = load("uid://bw3gpq8cn8kui")
 	music_stream.play()
 	screamer.show()
-	await get_tree().create_timer(1).timeout
-	screamer.material.set_shader_parameter("invert", true)
-	await get_tree().create_timer(0.2).timeout
-	screamer.material.set_shader_parameter("invert", false)
-	await get_tree().create_timer(1.0).timeout
+	for i in range(3):
+		await get_tree().create_timer(0.5).timeout
+		screamer.material.set_shader_parameter("invert", true)
+		await get_tree().create_timer(0.2).timeout
+		screamer.material.set_shader_parameter("invert", false)
+		await get_tree().create_timer(0.5).timeout
 	GameData.day = 1
 	get_tree().reload_current_scene()
 	

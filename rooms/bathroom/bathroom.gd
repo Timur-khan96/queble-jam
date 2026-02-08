@@ -9,16 +9,6 @@ var washing_node: Control
 func _ready():
 	super._ready()
 	washing_scene = load("uid://ccxy8yvi4bx7y")
-
-func _on_bath_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			if is_equal_approx(GameData.needs[need_type], 1.):
-				girl_say_request.emit("I'm already clean!")
-			elif AnomalyServer.current_anomalies[AnomalyServer.ANOMALY.GIRL]:
-				girl_screamer_request.emit()
-			else:
-				_start_washing()
 			
 func _start_washing():
 	if washing_node != null:
@@ -37,3 +27,13 @@ func _close_washing():
 	washing_node = null
 	washing_closed.emit()
 			
+
+func _on_background_pressed():
+	if is_equal_approx(GameData.needs[Consts.NEED_TYPE.HYGIENE], 1.):
+		girl_say_request.emit("I'm already clean!")
+		return
+	var anomalies = AnomalyServer.current_anomalies
+	if anomalies[AnomalyServer.ANOMALY.GIRL] or anomalies[AnomalyServer.ANOMALY.EYES] or anomalies[AnomalyServer.ANOMALY.SPEECH]:
+		girl_screamer_request.emit()
+	else:
+		_start_washing()

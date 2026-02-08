@@ -170,6 +170,7 @@ func _update_clean_percent():
 	if result >= 0.9:
 		cleaned_percent = 1.0
 		dirt.hide()
+		_is_finished()
 	else:
 		cleaned_percent = result
 		
@@ -204,6 +205,12 @@ func _on_soap_gui_input(event):
 			
 func _on_foam_exited():
 	foam_counter -= 1
-	if foam_counter == 0:
+	_is_finished()
+	
+func _is_finished():
+	if foam_counter == 0 and cleaned_percent >= 0.9:
 		GameData.finish_washing()
+		state = STATE.IDLE
+		soap.hide()
+		shower_head.hide()
 		return_button.show()

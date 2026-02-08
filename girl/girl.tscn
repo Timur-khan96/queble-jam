@@ -24,4 +24,8 @@ visible = false
 layout_mode = 0
 texture = ExtResource("4_yso6t")
 
+[node name="anomaly_timer" type="Timer" parent="." unique_id=758290467]
+one_shot = true
+
 [connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]
+[connection signal="timeout" from="anomaly_timer" to="." method="_on_anomaly_timer_timeout"]
