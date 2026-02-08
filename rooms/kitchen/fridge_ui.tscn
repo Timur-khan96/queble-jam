@@ -22,7 +22,7 @@ anchors_preset = 0
 script = ExtResource("1_ss4tx")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=313946834]
-custom_minimum_size = Vector2(400, 416)
+custom_minimum_size = Vector2(400, 484)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -43,7 +43,12 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lawra")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=502857273]

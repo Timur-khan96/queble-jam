@@ -20,7 +20,6 @@ func refill_fridge():
 	for type in Consts.FOOD_TYPE:
 		fridge_items[Consts.FOOD_TYPE[type]] = randi_range(0,3)
 
-		
 func restart_needs():
 	for need in Consts.NEED_TYPE:
 		needs[Consts.NEED_TYPE[need]] = 0

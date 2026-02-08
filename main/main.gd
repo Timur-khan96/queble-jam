@@ -14,6 +14,9 @@ var animated_coins: int = 0:
 	set(value):
 		animated_coins = value
 		coins_label.text = "$ %d" % animated_coins
+		
+var _morning_phrases: Array[String]
+var _evening_phrases: Array[String]
 
 func _ready():
 	GameData.restart_needs()
@@ -38,6 +41,8 @@ func _start_day(fader_time: int = 1):
 	girl.is_dirty = true
 	AnomalyServer.reset_anomalies()
 	if GameData.day == 1:
+		_morning_phrases = Consts.morning_phrases.duplicate()
+		_evening_phrases = Consts.evening_phrases.duplicate()
 		music_stream.play()
 	else:
 		GameData.restart_needs()
@@ -47,7 +52,14 @@ func _start_day(fader_time: int = 1):
 	_morning_phrase()
 	
 func _morning_phrase():
-	girl.say(Consts.morning_phrases.pick_random())
+	var phrase = _morning_phrases.pick_random()
+	_morning_phrases.erase(phrase)
+	girl.say(phrase)
+	
+func _evening_phrase():
+	var phrase = _evening_phrases.pick_random()
+	_evening_phrases.erase(phrase)
+	girl.say(phrase)
 	
 func _input(event):
 	if Input.is_action_just_pressed_by_event("exit", event):
@@ -75,7 +87,7 @@ func _on_day_finished():
 	if GameData.day == 7 and !anomalies_active:
 		_finish_game()
 	else:
-		girl.say(Consts.evening_phrases.pick_random())
+		_evening_phrase()
 		await girl.finished_talking
 		await fader.fade_to_black()
 		if anomalies_active:
@@ -118,5 +130,7 @@ func _finish_game():
 	girl.say("Congratulations, you did it!")
 	await girl.finished_talking
 	var outro = load("uid://b1y6q5fu44r1q").instantiate()
-	add_child(outro)
 	$ui_layer.hide()
+	await fader.fade_to_black()
+	add_child(outro)
+	

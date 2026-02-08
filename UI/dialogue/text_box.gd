@@ -2,7 +2,7 @@ extends MarginContainer
 
 signal finished_display()
 
-@onready var label = $MarginContainer/Label
+@onready var label = %Label
 @onready var timer = $LetterDisplayTimer
 
 const MAX_WIDTH = 768
@@ -32,7 +32,7 @@ func revert_anomaly():
 func display_text(new_text: String):
 	if AnomalyServer.current_anomalies[anomaly]:
 		apply_anomaly()
-		new_text = Consts.cursed_phrases.pick_random()
+		new_text = Cursed.cursed_phrases.pick_random()
 	text = new_text
 	label.text = text
 	await resized

@@ -7,22 +7,34 @@ signal buy() #sound
 @onready var give_button := %give_button
 @onready var buy_button := %buy_button
 
+const ICON_SIZE = 64
 
 var fridge_items: Dictionary[Consts.FOOD_TYPE, int] = GameData.fridge_items
+var food_icons: Texture2D
 
 func _ready():
+	food_icons = load("uid://g5l5n3jstc8d")
 	_update_fridge()
 	GameData.coins_updated.connect(_update_buttons)
+	
 	
 func _update_fridge():
 	var selected_arr = fridge_list.get_selected_items()
 	fridge_list.clear()
 	for item in fridge_items:
+		var t = _get_item_icon(item)
 		fridge_list.add_item("%s: %d" % [Consts.FOOD_TYPE.keys()[item], 
-			fridge_items[item]])
+			fridge_items[item]], t)
 	if !selected_arr.is_empty():
 		fridge_list.select(selected_arr[0])
 	_update_buttons()
+	
+func _get_item_icon(item: Consts.FOOD_TYPE) -> AtlasTexture:
+	var atlas = AtlasTexture.new()
+	atlas.atlas = food_icons
+	print(ICON_SIZE * item)
+	atlas.region = Rect2(ICON_SIZE * item, 0, ICON_SIZE, ICON_SIZE)
+	return atlas
 	
 func _update_buttons():
 	var selected_arr = fridge_list.get_selected_items()

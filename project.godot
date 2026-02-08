@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://b0a8tteyadlqo"
 Consts="*uid://b5ctki111ylsr"
 GameData="*uid://mv8f1g74mj81"
 AnomalyServer="*uid://dh8xyq0u8mab3"
+Cursed="*uid://20tlckf0av02"
 
 [display]
 
