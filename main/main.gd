@@ -13,7 +13,7 @@ var coins_tween: Tween
 var animated_coins: int = 0:
 	set(value):
 		animated_coins = value
-		coins_label.text = "$: %d" % animated_coins
+		coins_label.text = "$ %d" % animated_coins
 
 func _ready():
 	GameData.restart_needs()
@@ -55,13 +55,13 @@ func _input(event):
 	if Input.is_action_just_pressed_by_event("enter", event):
 		if OS.has_feature("web"):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	#if Input.is_action_just_pressed_by_event("skip", event):
-		#for n in GameData.needs:
-			#if n == Consts.NEED_TYPE.ENERGY:
-				#GameData.needs[n] = 0
-			#else:
-				#GameData.needs[n] = 1
-		#GameData.needs_updated.emit()
+	if Input.is_action_just_pressed_by_event("skip", event):
+		for n in GameData.needs:
+			if n == Consts.NEED_TYPE.ENERGY:
+				GameData.needs[n] = 0
+			else:
+				GameData.needs[n] = 1
+		GameData.needs_updated.emit()
 		
 func _on_coins_updated():
 	if coins_tween:
@@ -71,14 +71,18 @@ func _on_coins_updated():
 	coins_tween.tween_property(self, "animated_coins", GameData.coins, 1)
 	
 func _on_day_finished():
-	girl.say(Consts.evening_phrases.pick_random())
-	await girl.finished_talking
-	await fader.fade_to_black()
-	if AnomalyServer.are_active_anomalies():
-		GameData.day = 1
+	var anomalies_active := AnomalyServer.are_active_anomalies()
+	if GameData.day == 7 and !anomalies_active:
+		_finish_game()
 	else:
-		GameData.day += 1
-	_start_day()
+		girl.say(Consts.evening_phrases.pick_random())
+		await girl.finished_talking
+		await fader.fade_to_black()
+		if anomalies_active:
+			GameData.day = 1
+		else:
+			GameData.day += 1
+		_start_day()
 	
 func _scream():
 	var screamer = $screamer
@@ -107,4 +111,12 @@ func _stop_music():
 		AudioServer.set_bus_volume_db(idx, linear_to_db(curr))
 		await get_tree().create_timer(0.2).timeout
 	music_stream.stop()
+	await get_tree().process_frame
 	AudioServer.set_bus_volume_db(idx, linear_to_db(start))
+	
+func _finish_game():
+	girl.say("Congratulations, you did it!")
+	await girl.finished_talking
+	var outro = load("uid://b1y6q5fu44r1q").instantiate()
+	add_child(outro)
+	$ui_layer.hide()

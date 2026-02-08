@@ -7,6 +7,8 @@ signal computer_closed()
 var computer_node: Node
 
 @onready var audio = $AudioStreamPlayer
+@onready var head = $head
+
 var computer_on_stream: AudioStream = load("uid://oertmbi6ab0p")
 var computer_off_stream: AudioStream = load("uid://dff75vkkeq820")
 
@@ -22,6 +24,8 @@ func _start_computer():
 	computer_node = computer_scene.instantiate()
 	computer_node.closed.connect(_close_computer)
 	add_child(computer_node)
+	if head.is_in_group("reportable_anomaly"):
+		head.hide_anomaly()
 	computer_opened.emit()
 	
 func _close_computer():
@@ -34,6 +38,7 @@ func _close_computer():
 	audio.play()
 	computer_node.queue_free()
 	computer_node = null
+	head.sync_anomaly()
 	computer_closed.emit()
 
 func _input(event):

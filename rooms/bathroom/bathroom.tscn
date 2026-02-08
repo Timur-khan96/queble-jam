@@ -51,4 +51,6 @@ expand_mode = 1
 script = ExtResource("7_s7kog")
 anomaly = 6
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=350509066]
+
 [connection signal="pressed" from="background" to="." method="_on_background_pressed"]

@@ -4,11 +4,11 @@ extends TextureRect
 
 func _ready():
 	visible = false
-	AnomalyServer.anomalies_reset.connect(_sync)
+	AnomalyServer.anomalies_reset.connect(sync_anomaly)
 	#AnomalyServer.anomaly_resolved.connect(_on_resolved)
-	_sync()
+	sync_anomaly()
 		
-func _sync():
+func sync_anomaly():
 	if AnomalyServer.current_anomalies.get(anomaly, false):
 		show_anomaly()
 	else:

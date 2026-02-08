@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dbi7cl60iblp8" path="res://rooms/study/shader_mask.png" id="4_00adj"]
 [ext_resource type="Texture2D" uid="uid://dma35f7g5hpwv" path="res://rooms/study/background.png" id="5_xrrbp"]
 [ext_resource type="BitMap" uid="uid://3yomckl1vdnl" path="res://rooms/study/mask.png" id="6_6y1yc"]
+[ext_resource type="Texture2D" uid="uid://ns0b1u8pv7hf" path="res://rooms/study/head.png" id="7_xrrbp"]
+[ext_resource type="Script" uid="uid://b8gbunvuygjuy" path="res://anomalies/texture_rect_anomaly.gd" id="8_6y1yc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mr7hi"]
 shader = ExtResource("3_074wr")
@@ -39,5 +41,18 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("5_xrrbp")
 texture_click_mask = ExtResource("6_6y1yc")
+
+[node name="head" type="TextureRect" parent="." unique_id=1591751995]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.68
+anchor_right = 0.215
+anchor_bottom = 0.832
+texture = ExtResource("7_xrrbp")
+expand_mode = 1
+script = ExtResource("8_6y1yc")
+anomaly = 8
 
 [connection signal="pressed" from="background" to="." method="_on_background_pressed"]

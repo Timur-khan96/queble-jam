@@ -50,7 +50,7 @@ alignment = 1
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "A friend of mine asked me to test his game. He says other testers are complaining about something, but everything seems fine to him. If something's wrong with the game, I should hit the report button in the top right. He said it's only7 in-game days to finish it."
+text = "A friend of mine asked me to test his game. He says other testers are complaining about something, but everything seems fine to him. If something's wrong with the game, I should hit the report button in the top right. He says it's only 7 in-game days to finish it."
 horizontal_alignment = 1
 autowrap_mode = 3
 

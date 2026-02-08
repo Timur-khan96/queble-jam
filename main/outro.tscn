@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b1y6q5fu44r1q"]
+
+[ext_resource type="Script" uid="uid://b4fsku38ud7oo" path="res://main/outro.gd" id="1_6vk62"]
+
+[node name="outro" type="Control" unique_id=191423461]
+process_mode = 3
+z_index = 1001
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6vk62")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=379867264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label" type="Label" parent="." unique_id=427152972]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "You have survived!
+Thank you for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

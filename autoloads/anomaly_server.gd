@@ -10,7 +10,9 @@ enum ANOMALY {
 	PAINTING = 4,
 	KNIFE = 5,
 	TOASTER = 6,
-	SPEECH = 7
+	SPEECH = 7,
+	HEAD = 8,
+	PUDDLE = 9
 }
 
 var current_anomalies: Dictionary[ANOMALY, bool] = {}
