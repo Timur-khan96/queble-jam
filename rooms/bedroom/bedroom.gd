@@ -11,6 +11,7 @@ func _ready():
 	GameData.day_updated.connect(_update_calendar)
 	
 func _update_calendar():
+	background.disabled = false
 	%day_label.text = str(GameData.day)
 			
 func _can_sleep():
@@ -24,5 +25,6 @@ func _can_sleep():
 func _on_background_pressed():
 	if _can_sleep():
 		sleep_started.emit()
+		background.disabled = true
 	else:
 		girl_say_request.emit(sleep_refusals.pick_random())

@@ -1,6 +1,6 @@
 extends Node
 
-signal anomalies_reset() #the girl
+signal anomalies_reset()
 
 enum ANOMALY {
 	EYES = 0,
@@ -21,7 +21,6 @@ func _clear_anomalies():
 		current_anomalies[ANOMALY[a]] = false
 
 func reset_anomalies():
-	print("resetting anomalies")
 	_clear_anomalies()
 	var count = 4
 	if GameData.day < count:
@@ -33,6 +32,8 @@ func reset_anomalies():
 		if prev_day_anomalies.has(ANOMALY[k]): continue
 		if ANOMALY[k] == ANOMALY.GIRL and current_anomalies[ANOMALY.EYES]:
 			continue #they can't be both true
+		if ANOMALY[k] == ANOMALY.EYES and current_anomalies[ANOMALY.GIRL]:
+			continue
 		
 		current_anomalies[ANOMALY[k]] = true
 		count -= 1

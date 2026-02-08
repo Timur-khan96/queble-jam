@@ -60,7 +60,7 @@ grow_vertical = 2
 texture = ExtResource("3_i3uk5")
 expand_mode = 3
 script = ExtResource("4_kc55n")
-anomaly = 2
+anomaly = 3
 
 [node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=7856350]
 custom_minimum_size = Vector2(0, 92)

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/open_eyes_open_mouth.png-920ab626b1ebd36d6b0c
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

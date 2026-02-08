@@ -43,7 +43,6 @@ func _ready():
 func apply_anomaly():
 	is_anomaly = true
 	_update_main_texture()
-	print("anomaly applied")
 	anomaly_timer.start(randf_range(8.0, 12.0))
 	add_to_group("reportable_anomaly")
 

@@ -9,7 +9,7 @@ signal hit
 const speed = 14
 const fall_acceleration = 75
 const jump_impulse = 20
-const bounce_impulse = 16
+const bounce_impulse = 18
 
 var target_velocity = Vector3.ZERO
 var on_floor: bool = true

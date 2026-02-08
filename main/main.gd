@@ -13,7 +13,7 @@ var coins_tween: Tween
 var animated_coins: int = 0:
 	set(value):
 		animated_coins = value
-		coins_label.text = "💰: %d" % animated_coins
+		coins_label.text = "$: %d" % animated_coins
 
 func _ready():
 	GameData.restart_needs()
@@ -52,13 +52,16 @@ func _morning_phrase():
 func _input(event):
 	if Input.is_action_just_pressed_by_event("exit", event):
 		get_tree().quit()
-	if Input.is_action_just_pressed_by_event("skip", event):
-		for n in GameData.needs:
-			if n == Consts.NEED_TYPE.ENERGY:
-				GameData.needs[n] = 0
-			else:
-				GameData.needs[n] = 1
-		GameData.needs_updated.emit()
+	if Input.is_action_just_pressed_by_event("enter", event):
+		if OS.has_feature("web"):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#if Input.is_action_just_pressed_by_event("skip", event):
+		#for n in GameData.needs:
+			#if n == Consts.NEED_TYPE.ENERGY:
+				#GameData.needs[n] = 0
+			#else:
+				#GameData.needs[n] = 1
+		#GameData.needs_updated.emit()
 		
 func _on_coins_updated():
 	if coins_tween:

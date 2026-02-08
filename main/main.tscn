@@ -118,10 +118,10 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -72.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = 72.0
+offset_left = -140.0
+offset_top = 64.0
+offset_right = -100.0
+offset_bottom = 104.0
 grow_horizontal = 0
 
 [node name="report_button" type="TextureButton" parent="ui_layer/top_right" unique_id=1390743124]

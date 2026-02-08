@@ -84,7 +84,6 @@ func _on_player_hit():
 	
 func _on_mob_squashed():
 	var new_value := 2 * (combo + 1)
-	print("mob reward: %d" % new_value)
 	_update_score(score + new_value)
 	pop_stream.play()
 	_update_combo(combo + 1)

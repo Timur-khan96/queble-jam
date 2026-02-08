@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/soap_censorship.png-ce82db0a4c6ed3221d165c915
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

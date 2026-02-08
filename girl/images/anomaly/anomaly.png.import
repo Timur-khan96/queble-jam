@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/anomaly.png-aa264c046a2bb9b3d5cba551405ce67a.
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

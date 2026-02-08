@@ -5,7 +5,6 @@ extends TextureRect
 func _ready():
 	visible = false
 	AnomalyServer.anomalies_reset.connect(_sync)
-	print(AnomalyServer.ANOMALY.keys()[anomaly], " ready")
 	#AnomalyServer.anomaly_resolved.connect(_on_resolved)
 	_sync()
 		

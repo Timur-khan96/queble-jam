@@ -8,7 +8,7 @@ var needs: Dictionary[Consts.NEED_TYPE, float]
 var fridge_items: Dictionary[Consts.FOOD_TYPE, int]
 var coins: int = 0
 
-var day: int = 4:
+var day: int = 1:
 	set(value):
 		if day == value: return
 		day = value
