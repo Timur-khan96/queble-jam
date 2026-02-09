@@ -15,18 +15,12 @@ func _init(_my_type: Consts.NEED_TYPE):
 	fill_mode = FILL_BOTTOM_TO_TOP
 	texture_progress = load("uid://cgd8xglvb5lj4")
 	texture_under = load("uid://c3rxcbpl8nbwe")
-	_get_texture_over()
+	texture_over = load(Consts.NEED_ICONS[type])
 	max_value = 1.
 	step = 0.001
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	GameData.needs_updated.connect(_on_needs_updated)
 	_update_value()
-	
-func _get_texture_over():
-	texture_over = AtlasTexture.new()
-	texture_over.atlas = load("uid://vad7gqr1is0c")
-	texture_over.region.position = Vector2(type * 144, 0)
-	texture_over.region.size = Vector2(144,144)
 	
 func _notification(what):
 	if what == NOTIFICATION_MOUSE_ENTER:
