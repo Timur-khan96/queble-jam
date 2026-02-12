@@ -6,12 +6,8 @@
 
 [node name="girl" type="TextureRect" unique_id=1316401473]
 z_index = 1
-offset_right = 1024.0
-offset_bottom = 1536.0
-scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_4otov")
 expand_mode = 1
-stretch_mode = 6
 script = ExtResource("2_8ivrv")
 
 [node name="blink_timer" type="Timer" parent="." unique_id=938693127]
@@ -21,8 +17,14 @@ autostart = true
 
 [node name="dirt" type="TextureRect" parent="." unique_id=248229008]
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_yso6t")
+expand_mode = 1
 
 [node name="anomaly_timer" type="Timer" parent="." unique_id=758290467]
 one_shot = true

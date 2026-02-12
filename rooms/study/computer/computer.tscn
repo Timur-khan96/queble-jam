@@ -19,50 +19,48 @@ grow_vertical = 2
 script = ExtResource("1_4lxr8")
 minigame_scene = ExtResource("1_21dpd")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=731739616]
+[node name="computer_container" type="PanelContainer" parent="." unique_id=731739616]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -384.0
-offset_right = 384.0
-offset_bottom = 640.0
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 736.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rt20b")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1320062810]
+[node name="VBoxContainer" type="VBoxContainer" parent="computer_container" unique_id=1320062810]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=339328221]
+[node name="MarginContainer" type="MarginContainer" parent="computer_container/VBoxContainer" unique_id=339328221]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=109446234]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="computer_container/VBoxContainer/MarginContainer" unique_id=109446234]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer/VBoxContainer/MarginContainer/SubViewportContainer" unique_id=2146082066]
+[node name="SubViewport" type="SubViewport" parent="computer_container/VBoxContainer/MarginContainer/SubViewportContainer" unique_id=2146082066]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="scary_picture" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" unique_id=596290200]
+[node name="scary_picture" type="TextureRect" parent="computer_container/VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" unique_id=596290200]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_i3uk5")
-expand_mode = 3
 script = ExtResource("4_kc55n")
 anomaly = 3
 
-[node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=7856350]
+[node name="close_button" type="Button" parent="computer_container/VBoxContainer" unique_id=7856350]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 theme_override_constants/outline_size = 8
@@ -75,5 +73,5 @@ text = "Turn off the computer"
 stream = ExtResource("5_rt20b")
 volume_db = -4.0
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="computer_container/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="timeout" from="fun_timer" to="." method="_on_fun_timer_timeout"]

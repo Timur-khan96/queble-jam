@@ -81,17 +81,29 @@ func say(text: String):
 	is_talking = true
 	text_box = text_box_scene.instantiate()
 	add_child(text_box)
-	text_box.global_position.x -= text_box.MAX_WIDTH * 0.5
-	text_box.global_position.y += 128
-	text_box.display_text(text)
-	text_box.finished_display.connect(_on_text_box_finished)
 	
-func _on_text_box_finished():
-	await get_tree().create_timer(1.0).timeout
-	text_box.queue_free()
-	text_box = null
+	text_box.finished_display.connect(_on_text_box_finished)
+	#text_box.global_position.y -= 128
+	#text_box.global_position.x -= text_box.size.x
+	await text_box.display_text(text)
+	text_box.global_position.x -= text_box.size.x
+	
+	
+func _on_text_box_finished(_is_anomaly: bool):
+	if _is_anomaly:
+		text_box.queue_free()
+		text_box = null
+		await get_tree().create_timer(1.0).timeout
+	else:
+		await get_tree().create_timer(1.0).timeout
+		text_box.queue_free()
+		text_box = null
+	
 	is_talking = false
-	finished_talking.emit()
+	if _is_anomaly:
+		say("I don't remember what I wanted to say")
+	else:
+		finished_talking.emit()
 	
 func _on_blink_timer_timeout():
 	is_blinking = true

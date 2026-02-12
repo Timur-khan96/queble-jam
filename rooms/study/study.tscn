@@ -41,6 +41,8 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("5_xrrbp")
 texture_click_mask = ExtResource("6_6y1yc")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="head" type="TextureRect" parent="." unique_id=1591751995]
 visible = false

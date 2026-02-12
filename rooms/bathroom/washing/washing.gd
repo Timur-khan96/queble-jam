@@ -13,8 +13,6 @@ enum STATE {IDLE, SOAP, SHOWER}
 @onready var return_button = %return_button
 @onready var scrubbing_stream = $scrubbing_stream
 
-
-
 var _mouse_node: Node2D = null
 var shower_scene = load("uid://btnp1u3uj17pm")
 var foam_scene = load("uid://cxjtxschawytu")
@@ -59,15 +57,7 @@ func _ready():
 	_build_dirt_grid(dirt_texture)
 	brush_radius_uv = Vector2(BRUSH_RADIUS / dirt_tex_size.x, 
 		BRUSH_RADIUS / dirt_tex_size.y)
-	_position_girl()
 	return_button.hide()
-		
-func _position_girl():
-	var rect_size = get_viewport_rect().size
-	var x_offset_factor = 0.5
-	naked_girl.position.x = rect_size.x * x_offset_factor
-	var y_offset = naked_girl.texture.get_height() * naked_girl.scale.y / 2
-	naked_girl.position.y = rect_size.y - y_offset
 	
 func _build_dirt_grid(texture: Texture2D):
 	dirt_grid.resize(GRID_X * GRID_Y)
@@ -131,8 +121,10 @@ func _physics_process(delta):
 			mask_brush.visible = false
 			return
 		var mouse_global = get_global_mouse_position()
-		var local = dirt.to_local(mouse_global)
-		var uv = (local + dirt_tex_size * 0.5) / dirt_tex_size
+		var local = dirt.get_global_transform().affine_inverse() * mouse_global
+		var rect: Rect2 = dirt.get_rect()
+		var uv = (local - rect.position) / rect.size
+		#var uv = (local + dirt_tex_size * 0.5) / dirt_tex_size
 
 		mask_brush.position = uv * Vector2(mask_viewport.size)
 		mask_brush.visible = true
@@ -166,6 +158,7 @@ func apply_cleaning_uv(uv: Vector2):
 					_spawn_foam(gx, gy)
 				
 func _update_clean_percent():
+	if is_equal_approx(cleaned_percent, 1.0): return
 	var result: float = total_cleaned_cells / float(total_dirt_cells)
 	if result >= 0.9:
 		cleaned_percent = 1.0
@@ -176,10 +169,14 @@ func _update_clean_percent():
 		
 func _spawn_foam(gx: int, gy: int):
 	var foam: Area2D = foam_scene.instantiate()
-	foam.position = Vector2(
-		(gx + 0.5) / GRID_X * dirt_tex_size.x - dirt_tex_size.x * 0.5,
-		(gy + 0.5) / GRID_Y * dirt_tex_size.y - dirt_tex_size.y * 0.5
+	var uv := Vector2(
+		(gx + 0.5) / GRID_X,
+		(gy + 0.5) / GRID_Y
 	)
+
+	var rect: Rect2 = dirt.get_global_rect()
+	var foam_global := rect.position + uv * rect.size
+	foam.position = naked_girl.get_global_transform().affine_inverse() * foam_global
 	foam.rotation = randf_range(0, TAU)
 	foam.scale *= randf_range(0.8, 1.2)
 	foam.z_index = dirt.z_index + 1

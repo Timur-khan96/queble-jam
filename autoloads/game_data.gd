@@ -17,6 +17,7 @@ var day: int = 1:
 var creeps_high_score: int = 0
 
 func refill_fridge():
+	fridge_items.clear()
 	for type in Consts.FOOD_TYPE:
 		fridge_items[Consts.FOOD_TYPE[type]] = randi_range(0,3)
 

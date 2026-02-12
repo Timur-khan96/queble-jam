@@ -58,3 +58,11 @@ const evening_phrases: Array[String] = [
 	"Please don't forget to take care of yourself — eat, sleep, and wash up, dear",
 	"Your hands are so gentle~"
 ]
+
+const cursed_phrases_html_friendly: Array[String] = [
+	"I wish for you to find someone who will mourn you when you're gone",
+	"It's not me who's stuck in the meaningless cycle",
+	"I hope your friends won't forget about you when you're gone",
+	"What's the point of being alive?",
+	"I love you being so pathetic"
+]

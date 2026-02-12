@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://wcq21i2l07k1" path="res://UI/dialogue/panel-002.png" id="2_s4etn"]
 
 [node name="text_box" type="MarginContainer" unique_id=257933902]
+z_index = 100
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_s4etn")
@@ -28,7 +29,7 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 52
+theme_override_font_sizes/font_size = 32
 vertical_alignment = 1
 
 [node name="LetterDisplayTimer" type="Timer" parent="." unique_id=2108683073]

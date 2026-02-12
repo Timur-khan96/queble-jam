@@ -11,7 +11,20 @@ signal closed()
 var minigame_node: Node
 
 func _ready():
+	_resize_computer()
+	get_viewport().size_changed.connect(_resize_computer)
 	_restart_minigame()
+
+func _resize_computer():
+	var vp = get_viewport_rect().size
+	var vp_scale = min(vp.x / 1920.0, vp.y / 1080.0)
+
+	vp_scale = clamp(vp_scale, 0.6, 1.0)
+	var target_size = Vector2i(1280 * vp_scale, 720 * vp_scale)
+	sub_viewport.size = target_size
+	sub_viewport.size_2d_override = target_size
+	sub_viewport.size_2d_override_stretch = true
+	$computer_container.custom_minimum_size = target_size
 	
 func _restart_minigame():
 	if minigame_node != null:

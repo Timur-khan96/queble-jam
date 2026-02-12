@@ -32,7 +32,6 @@ func _update_fridge():
 func _get_item_icon(item: Consts.FOOD_TYPE) -> AtlasTexture:
 	var atlas = AtlasTexture.new()
 	atlas.atlas = food_icons
-	print(ICON_SIZE * item)
 	atlas.region = Rect2(ICON_SIZE * item, 0, ICON_SIZE, ICON_SIZE)
 	return atlas
 	

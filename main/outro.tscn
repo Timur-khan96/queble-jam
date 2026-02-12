@@ -32,8 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 24
 text = "Hey…
 Thank you for staying with me.
 For checking on me every day.
@@ -42,11 +41,8 @@ For feeding me, taking care of me, spending your time here by my side....
 When the darkness came closer, you didn’t run away.
 You kept me safe.
 You always did.
-
 Thank you, love.
-
 …
-
 User intervention ineffective.
 Care cycle corrupted.
 

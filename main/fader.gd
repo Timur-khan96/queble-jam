@@ -6,10 +6,10 @@ func fade_from_black(fade_time: int = 1):
 	await tween.finished
 	hide()
 		
-func fade_to_black():
+func fade_to_black(fade_time: int = 1):
 	show()
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "color", Color(0, 0, 0, 1), 1)
+	tween.tween_property(self, "color", Color(0, 0, 0, 1), fade_time)
 	await tween.finished
 	return
 	

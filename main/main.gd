@@ -19,6 +19,7 @@ var _morning_phrases: Array[String]
 var _evening_phrases: Array[String]
 
 func _ready():
+	GameData.coins_updated.connect(_on_coins_updated)
 	GameData.restart_needs()
 	_start_day()
 	room_manager = RoomManager.new(girl, %h_needs_container, %v_needs_container)
@@ -31,11 +32,6 @@ func _ready():
 	
 	girl.girl_scream.connect(_scream)
 	
-	GameData.coins_updated.connect(_on_coins_updated)
-	GameData.coins = 100
-	_on_coins_updated()
-	GameData.refill_fridge()
-	
 	
 func _start_day(fader_time: int = 1):
 	girl.is_dirty = true
@@ -43,6 +39,8 @@ func _start_day(fader_time: int = 1):
 	if GameData.day == 1:
 		_morning_phrases = Consts.morning_phrases.duplicate()
 		_evening_phrases = Consts.evening_phrases.duplicate()
+		GameData.update_coins(100)
+		GameData.refill_fridge()
 		music_stream.play()
 	else:
 		GameData.restart_needs()
@@ -67,13 +65,6 @@ func _input(event):
 	if Input.is_action_just_pressed_by_event("enter", event):
 		if OS.has_feature("web"):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	if Input.is_action_just_pressed_by_event("skip", event):
-		for n in GameData.needs:
-			if n == Consts.NEED_TYPE.ENERGY:
-				GameData.needs[n] = 0
-			else:
-				GameData.needs[n] = 1
-		GameData.needs_updated.emit()
 		
 func _on_coins_updated():
 	if coins_tween:
@@ -130,7 +121,8 @@ func _finish_game():
 	girl.say("Congratulations, you did it!")
 	await girl.finished_talking
 	var outro = load("uid://b1y6q5fu44r1q").instantiate()
+	await fader.fade_to_black(2)
+	await get_tree().create_timer(1).timeout
 	$ui_layer.hide()
-	await fader.fade_to_black()
 	add_child(outro)
 	
